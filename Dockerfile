@@ -10,4 +10,5 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock /app/
 RUN bundle install
 
+EXPOSE 3000
 CMD ["/bin/bash"]
