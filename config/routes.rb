@@ -1,4 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
+  resources :order_items
+  resources :items
+  resources :ratings
+  resources :orders
+  resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
