@@ -3,6 +3,7 @@
 # Controller for Users
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
+  wrap_parameters :user, include: [:first_name, :last_name, :email, :password, :password_confirmation]
 
   # GET /users
   def index
@@ -13,7 +14,15 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    @user = User.find(params[:id])
+    if @user
+      render json: @user
+    else
+      fdncdf json: {
+        status: 404,
+        errors: ['user not found']
+      }
+    end
   end
 
   # POST /users
@@ -21,8 +30,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      login!
       render json: @user, status: :created, location: @user
     else
+      puts @user.errors.inspect
       render json: @user.errors, status: :unprocessable_entity
     end
   end
@@ -50,6 +61,6 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.fetch(:user, {})
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 end
