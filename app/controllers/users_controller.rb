@@ -3,7 +3,7 @@
 # Controller for Users
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
-  wrap_parameters :user, include: [:first_name, :last_name, :email, :password, :password_confirmation]
+  wrap_parameters :user, include: %i[first_name last_name email password password_confirmation]
 
   # GET /users
   def index
