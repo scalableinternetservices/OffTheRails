@@ -10,6 +10,12 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Enabled: false
 
+Naming/PredicateName:
+  Enabled: false
+
+Style/CaseEquality:
+  Enabled: false
+
 AllCops:
   NewCops: enable
   Exclude:
