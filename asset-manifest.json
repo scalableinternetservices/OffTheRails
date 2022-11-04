@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/OffTheRails/static/css/main.bd6cfa8a.chunk.css",
+    "main.js": "/OffTheRails/static/js/main.479990e4.chunk.js",
+    "main.js.map": "/OffTheRails/static/js/main.479990e4.chunk.js.map",
+    "runtime-main.js": "/OffTheRails/static/js/runtime-main.b85d79b4.js",
+    "runtime-main.js.map": "/OffTheRails/static/js/runtime-main.b85d79b4.js.map",
+    "static/js/2.f8bea1e4.chunk.js": "/OffTheRails/static/js/2.f8bea1e4.chunk.js",
+    "static/js/2.f8bea1e4.chunk.js.map": "/OffTheRails/static/js/2.f8bea1e4.chunk.js.map",
+    "index.html": "/OffTheRails/index.html",
+    "precache-manifest.5d523f3a8a397e01027afab38acaf225.js": "/OffTheRails/precache-manifest.5d523f3a8a397e01027afab38acaf225.js",
+    "service-worker.js": "/OffTheRails/service-worker.js",
+    "static/css/main.bd6cfa8a.chunk.css.map": "/OffTheRails/static/css/main.bd6cfa8a.chunk.css.map",
+    "static/js/2.f8bea1e4.chunk.js.LICENSE.txt": "/OffTheRails/static/js/2.f8bea1e4.chunk.js.LICENSE.txt",
+    "static/js/main.479990e4.chunk.js.LICENSE.txt": "/OffTheRails/static/js/main.479990e4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b85d79b4.js",
+    "static/js/2.f8bea1e4.chunk.js",
+    "static/css/main.bd6cfa8a.chunk.css",
+    "static/js/main.479990e4.chunk.js"
+  ]
+}
