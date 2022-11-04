@@ -20,8 +20,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_024619) do
     t.decimal "price", precision: 8, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_items_on_user_id"
+    t.bigint "seller_id"
+    t.index ["seller_id"], name: "index_items_on_seller_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_024619) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "items", "users"
+  add_foreign_key "items", "users", column: "seller_id"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"

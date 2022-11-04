@@ -3,7 +3,7 @@
 # Migration for adding references to tables
 class AddTableReferences < ActiveRecord::Migration[7.0]
   def change
-    add_reference :items, :user, foreign_key: true
+    add_reference :items, :seller, foreign_key: { to_table: :users }
 
     add_reference :orders, :user, foreign_key: true
 
