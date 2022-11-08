@@ -16,3 +16,5 @@ export const signUp = (formData) => API.post('/users', formData);
 export const signOut = () => API.post('/logout');
 
 export const fetchItems = () => API.get('/items');
+export const createItem = (newItem) => API.post('/items', newItem);
+export const updateItem = (id, updatedItem) => API.patch(`/items/${id}`, updatedItem);
