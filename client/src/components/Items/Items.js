@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, LinearProgress, Button  } from '@material-ui/core';
 import EditIcon from '@mui/icons-material/Edit';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { useSelector } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -30,7 +31,7 @@ const Items = ({ setCurrentId }) => {
                             />
                             {( user?.user?.id === item?.seller_id) && (
                                 <div className={classes.overlay2}>
-                                    <Button style={{color: 'white'}} size="small" onClick={() => {setCurrentId(item.id)}}>
+                                    <Button style={{color: 'white', backgroundColor: 'rgba(0,0,0,0.26)'}} size="small" onClick={() => {setCurrentId(item.id)}}>
                                         <EditIcon fontSize="medium" />
                                     </Button>
                                 </div>
