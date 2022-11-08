@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, LinearProgress, Button  } from '@material-ui/core';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import EditIcon from '@mui/icons-material/Edit';
 import { useSelector } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -31,7 +31,7 @@ const Items = ({ setCurrentId }) => {
                             {( user?.user?.id === item?.seller_id) && (
                                 <div className={classes.overlay2}>
                                     <Button style={{color: 'white'}} size="small" onClick={() => {setCurrentId(item.id)}}>
-                                        <MoreHorizIcon fontSize="medium" />
+                                        <EditIcon fontSize="medium" />
                                     </Button>
                                 </div>
                             )}
