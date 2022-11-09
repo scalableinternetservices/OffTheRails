@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, LinearProgress, Button  } from '@material-ui/core';
 import EditIcon from '@mui/icons-material/Edit';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -8,13 +8,19 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 
 import useStyles from './styles';
 
 const Items = ({ setCurrentId }) => {
     const classes = useStyles();
     const items = useSelector((state) => state.items);
-    const user = JSON.parse(localStorage.getItem('profile'));
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const location = useLocation();
+
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, [location])
 
     return (
         !items.length ? <LinearProgress /> : (

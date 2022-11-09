@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import useStyles from './styles';
 import { createItem, updateItem } from '../../actions/items';
@@ -11,7 +12,8 @@ const Form = ( { currentId, setCurrentId }) => {
     const item = useSelector((state) => currentId ? state.items.find((p) => p.id === currentId) : null);
     const classes = useStyles();
     const dispatch = useDispatch();
-    const user = JSON.parse(localStorage.getItem('profile'));
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const location = useLocation();
 
     useEffect(() => {
         if(item) setItemData(item);
@@ -28,6 +30,10 @@ const Form = ( { currentId, setCurrentId }) => {
         }
     }
 
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, [location])
+
     const clear = () => {
         setCurrentId(0);
         setItemData({name: '', price: '', image_link: ''});
@@ -37,7 +43,7 @@ const Form = ( { currentId, setCurrentId }) => {
         return (
             <Paper className={classes.paper}>
                 <Typography variant="h6" align="center">
-                    Please Sign In to add your items and view your order history.
+                    Please Sign In to sell your items and view your order history.
                 </Typography>
             </Paper>
         )
