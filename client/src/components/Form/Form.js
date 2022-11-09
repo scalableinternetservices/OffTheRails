@@ -54,7 +54,7 @@ const Form = ( { currentId, setCurrentId }) => {
                 <Button className={classes.buttonSubmit} disabled={!itemData.name || !itemData.price || !itemData.image_link} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
                 {currentId !== 0 &&
-                    <Button variant="contained" color="error" size="small" onClick={() => {dispatch(deleteItem(item.id)); clear();}} fullWidth>Delete</Button>
+                    <Button className={classes.buttonPad} variant="contained" color="error" size="small" onClick={() => {dispatch(deleteItem(item.id)); clear();}} fullWidth>Delete</Button>
                 }
             </form>
         </Paper>
