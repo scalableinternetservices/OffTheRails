@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, LinearProgress, Button  } from '@material-ui/core';
 import EditIcon from '@mui/icons-material/Edit';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { useSelector } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';

@@ -4,7 +4,7 @@ import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useStyles from './styles';
-import { createItem, updateItem } from '../../actions/items';
+import { createItem, updateItem, deleteItem } from '../../actions/items';
 
 const Form = ( { currentId, setCurrentId }) => {
     const [itemData, setItemData] = useState({name: '', price: '', image_link: ''});
@@ -33,6 +33,7 @@ const Form = ( { currentId, setCurrentId }) => {
         setItemData({name: '', price: '', image_link: ''});
     }
 
+
     if(!user?.logged_in) {
         return (
             <Paper className={classes.paper}>
@@ -42,7 +43,7 @@ const Form = ( { currentId, setCurrentId }) => {
             </Paper>
         )
     }
-
+    console.log(itemData);
     return (
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
@@ -52,6 +53,9 @@ const Form = ( { currentId, setCurrentId }) => {
                 <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({base64}) => setItemData({ ...itemData, image_link: base64 })} /></div>
                 <Button className={classes.buttonSubmit} disabled={!itemData.name || !itemData.price || !itemData.image_link} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                {currentId !== 0 &&
+                    <Button variant="contained" color="error" size="small" onClick={() => {dispatch(deleteItem(item.id)); clear();}} fullWidth>Delete</Button>
+                }
             </form>
         </Paper>
     );
