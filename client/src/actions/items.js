@@ -1,16 +1,25 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
+import { FETCH_ALL_ITEM, FETCH_ONE_ITEM, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
 export const getItems = () => async (dispatch) => {
   try {
     const { data } = await api.fetchItems();
 
-    dispatch({ type: FETCH_ALL, payload: data });
+    dispatch({ type: FETCH_ALL_ITEM, payload: data });
   } catch (error) {
     console.log(error);
   }
 }
 
+export const getItem = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchItem(id);
+
+    dispatch({ type: FETCH_ONE_ITEM, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+}
 export const createItem = (item) => async (dispatch) => {
   try {
       const { data } = await api.createItem(item);
