@@ -12,7 +12,7 @@ import Rating from '@mui/material/Rating';
 const Ratings = (props) => {
     return (
         <div>
-           <Card sx={{ minWidth: 275 }}>
+           <Card sx={{ minWidth: 275, marginTop: 1 }}>
                 <CardContent>
                 <Typography variant="h5" component="div">
                     {props.title}
@@ -20,7 +20,7 @@ const Ratings = (props) => {
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
                     {props.reviewer}
                 </Typography>
-                <Rating name="read-only" value={3} readOnly />
+                <Rating name="read-only" value={props.stars} readOnly />
                 <Typography variant="body2">
                     {props.review}
                 </Typography>

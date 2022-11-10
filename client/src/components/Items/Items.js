@@ -32,9 +32,9 @@ const Items = ({ setCurrentId }) => {
             <Grid className={classes.container} container alignItems="stretch" spacing={3}>
             {items.map((item) => (
                 <Grid key={item.id} item xs={12} sm={6} md={6}>
-                    <Card sx={{ maxWidth: 345 }} onClick={() => openItem(item)}>
-                        <CardActionArea>
-                            <CardMedia
+                    <Card sx={{ maxWidth: 345 }}>
+                        <CardActionArea >
+                            <CardMedia onClick={() => openItem(item)}
                                 component="img"
                                 height="140"
                                 image={item.image_link}
@@ -47,7 +47,7 @@ const Items = ({ setCurrentId }) => {
                                     </Button>
                                 </div>
                             )}
-                            <CardContent>
+                            <CardContent onClick={() => openItem(item)}>
                                 <Typography gutterBottom variant="h5" component="div">
                                 {item.name}
                                 </Typography>
