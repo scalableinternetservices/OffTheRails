@@ -10,7 +10,6 @@ WORKDIR /app
 
 COPY Gemfile Gemfile.lock /app/
 RUN bundle install
-RUN yarn
 
 EXPOSE 3000
 CMD ["/bin/bash"]
