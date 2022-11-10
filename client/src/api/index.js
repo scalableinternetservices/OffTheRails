@@ -19,6 +19,6 @@ export const fetchItems = () => API.get('/items');
 export const fetchItem = (id) => API.get(`/items/${id}`);
 export const createItem = (newItem) => API.post('/items', newItem);
 export const updateItem = (id, updatedItem) => API.patch(`/items/${id}`, updatedItem);
+export const deleteItem = (id) => API.delete(`/items/${id}`);
 
 export const fetchUser = (id) => API.get(`/users/${id}`);
-export const deleteItem = (id) => API.delete(`/items/${id}`);
