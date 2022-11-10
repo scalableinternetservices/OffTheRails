@@ -37,7 +37,7 @@ const Item = () => {
     return (
         <div>
             <div>
-                <Card sx={{ minWidth: 275 }}>
+                <Card sx={{ minWidth: 275, marginBottom: 2 }}>
                     <CardMedia
                         component="img"
                         height="500"
@@ -67,9 +67,9 @@ const Item = () => {
                 </Card>
             </div>
 
-            <Ratings title="my review" reviewer="sydney" review="mid"></Ratings>
-
-
+            <Ratings title="my review" reviewer="sydney" review="mid" stars="3"></Ratings>
+            <Ratings title="second review" reviewer="bryan" review="pretty good!" stars="4"></Ratings>
+            <Ratings title="third review" reviewer="henry" review="good, but too expensive" stars="3"></Ratings>
         </div>
     );
 }
