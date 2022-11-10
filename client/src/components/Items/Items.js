@@ -7,6 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 import useStyles from './styles';
@@ -16,6 +17,11 @@ const Items = ({ setCurrentId }) => {
     const items = useSelector((state) => state.items);
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const location = useLocation();
+    const navigate = useNavigate();
+
+    const openItem = (item) => {
+        navigate(`/items/${item.id}`);
+    }
 
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem('profile')));
@@ -26,7 +32,7 @@ const Items = ({ setCurrentId }) => {
             <Grid className={classes.container} container alignItems="stretch" spacing={3}>
             {items.map((item) => (
                 <Grid key={item.id} item xs={12} sm={6} md={6}>
-                    <Card sx={{ maxWidth: 345 }}>
+                    <Card sx={{ maxWidth: 345 }} onClick={() => openItem(item)}>
                         <CardActionArea>
                             <CardMedia
                                 component="img"
