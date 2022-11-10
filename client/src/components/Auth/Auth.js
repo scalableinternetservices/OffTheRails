@@ -43,17 +43,6 @@ const Auth = () => {
         setShowPassword(false);
     }
 
-    console.log(user);
-
-    if (user?.logged_in) {
-        return (
-            <Button onClick={() => dispatch(signout(navigate))}>
-                { "Log Out"}
-            </Button>
-        )
-    }
-    
-    
     return (
         <Container component="main" maxWidth="xs">
             <Paper className={classes.paper} elevation={3}>

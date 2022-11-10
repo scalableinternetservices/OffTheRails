@@ -3,7 +3,7 @@ import { Container } from '@material-ui/core';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Auth from './components/Auth/Auth';
-import Navbar from './components/common/Navbar/Navbar';
+import Navbar from './components/Navbar/Navbar';
 
 const App = () => (
     <BrowserRouter>
