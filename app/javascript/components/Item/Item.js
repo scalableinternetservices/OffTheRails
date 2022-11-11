@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useStyles from './styles';
-import { getItem, getRating } from '../../actions/items';
+import { getItem } from '../../actions/items';
 import { getUser } from '../../actions/users';
 import { useDispatch, useSelector } from 'react-redux';
 import CardMedia from '@mui/material/CardMedia';
@@ -15,6 +15,7 @@ import { createOrderItem } from '../../actions/order_item';
 import { TextField } from '@material-ui/core';
 import Rating from '@mui/material/Rating';
 import Ratings from '../Ratings/Ratings';
+import RatingForm from '../RatingForm/RatingForm';
 
 const Item = () => {
     const classes = useStyles();
@@ -91,8 +92,10 @@ const Item = () => {
                         </CardActions>
                     )}
                 </Card>
-            </div>
 
+                <RatingForm itemId={id}/>
+            </div>
+            
             {
                 item ? item.ratings.map((r) => <Ratings title="Review" reviewer={`${r.user.first_name} ${r.user.last_name}`} review={r.comment} stars={r.score}></Ratings>) : null
             }
