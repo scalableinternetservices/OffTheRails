@@ -68,3 +68,5 @@ group :development do
 end
 
 gem 'shakapacker', '= 6.5'
+
+gem 'active_model_serializers'

@@ -67,9 +67,9 @@ const Item = () => {
                 </Card>
             </div>
 
-            <Ratings title="my review" reviewer="sydney" review="mid" stars="3"></Ratings>
-            <Ratings title="second review" reviewer="bryan" review="pretty good!" stars="4"></Ratings>
-            <Ratings title="third review" reviewer="henry" review="good, but too expensive" stars="3"></Ratings>
+            {
+                item ? item.ratings.map((r) => <Ratings title="Review" reviewer={`${r.user.first_name} ${r.user.last_name}`} review={r.comment} stars={r.score}></Ratings>) : null
+            }
         </div>
     );
 }
