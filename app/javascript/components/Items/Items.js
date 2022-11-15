@@ -52,7 +52,7 @@ const Items = ({ setCurrentId }) => {
                                 {item.name}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                ${item.price}
+                                ${Number(item.price).toFixed(2)}
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
