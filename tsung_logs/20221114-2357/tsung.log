@@ -1,0 +1,61 @@
+# stats: dump at 1668470257
+stats: users 0 1
+stats: {load,"tsung_controller@ip-172-31-61-37"} 1 0.0 0 0.0 0.0 0 0
+stats: {freemem,"tsung_controller@ip-172-31-61-37"} 1 690.2265625 0 690.2265625 690.2265625 0 0
+stats: {cpu,"tsung_controller@ip-172-31-61-37"} 1 1.5537940656352474 0 1.5537940656352474 1.5537940656352474 0 0
+stats: session 10 10.7646 18.72047686465278 66.92 4.259 0 0
+stats: users_count 10 10
+stats: finish_users_count 10 10
+stats: error_unknown 9 9
+stats: newphase 1 1
+# stats: dump at 1668470267
+stats: users 0 1
+stats: {load,"tsung_controller@ip-172-31-61-37"} 1 0.0 0.0 0.0 0.0 0.0 1
+stats: {freemem,"tsung_controller@ip-172-31-61-37"} 1 690.39453125 0.0 690.39453125 690.2265625 690.2265625 1
+stats: {cpu,"tsung_controller@ip-172-31-61-37"} 1 0.5497251374312844 0.0 1.5537940656352474 0.5497251374312844 1.5537940656352474 1
+stats: session 49 4.460836734693879 0.4583082621340775 66.92 4.019 10.7646 10
+stats: users_count 49 59
+stats: finish_users_count 49 59
+stats: error_unknown 48 57
+stats: newphase 2 3
+# stats: dump at 1668470277
+stats: users 0 3
+stats: {load,"tsung_controller@ip-172-31-61-37"} 1 0.0 0.0 0.0 0.0 0.0 2
+stats: {freemem,"tsung_controller@ip-172-31-61-37"} 1 690.4609375 0.0 690.4609375 690.2265625 690.310546875 2
+stats: {cpu,"tsung_controller@ip-172-31-61-37"} 1 0.8986520219670495 0.0 1.5537940656352474 0.5497251374312844 1.051759601533266 2
+stats: session 209 4.569741626794256 0.9146742930846421 66.92 3.465 5.5292711864406785 59
+stats: users_count 209 268
+stats: finish_users_count 209 268
+stats: error_unknown 193 250
+stats: newphase 2 5
+# stats: dump at 1668470287
+stats: users 0 5
+stats: {load,"tsung_controller@ip-172-31-61-37"} 1 0.16015625 0.0 0.16015625 0.0 0.0 3
+stats: {freemem,"tsung_controller@ip-172-31-61-37"} 1 687.9921875 0.0 690.4609375 687.9921875 690.3606770833334 3
+stats: {cpu,"tsung_controller@ip-172-31-61-37"} 1 3.8194444444444446 0.0 3.8194444444444446 0.5497251374312844 1.0007237416778605 3
+stats: session 774 4.994510335917311 1.8344972223142504 66.92 3.448 4.780981343283581 268
+stats: users_count 774 1042
+stats: finish_users_count 774 1042
+stats: error_unknown 720 970
+stats: newphase 2 7
+# stats: dump at 1668470297
+stats: users 1 13
+stats: {load,"tsung_controller@ip-172-31-61-37"} 1 0.28125 0.0 0.28125 0.0 0.0400390625 4
+stats: {freemem,"tsung_controller@ip-172-31-61-37"} 1 684.734375 0.0 690.4609375 684.734375 689.7685546875 4
+stats: {cpu,"tsung_controller@ip-172-31-61-37"} 1 14.180929095354522 0.0 14.180929095354522 0.5497251374312844 1.7054039173695066 4
+stats: session 3160 4.973180063291141 1.1711402331667071 66.92 3.273 4.939591170825334 1042
+stats: users_count 3161 4203
+stats: finish_users_count 3160 4202
+stats: error_unknown 3022 3992
+stats: newphase 2 9
+# stats: dump at 1668470305
+stats: users 0 13
+stats: {load,"tsung_controller@ip-172-31-61-37"} 1 0.55078125 0.0 0.55078125 0.0 0.08828125 5
+stats: {freemem,"tsung_controller@ip-172-31-61-37"} 1 676.61328125 0.0 690.4609375 676.61328125 688.76171875 5
+stats: {cpu,"tsung_controller@ip-172-31-61-37"} 1 44.602128737962495 0.0 44.602128737962495 0.5497251374312844 4.20050895296651 5
+stats: session 887 5.13736076662909 1.1468175191683023 66.92 3.273 4.964850785340316 4202
+stats: users_count 886 5089
+stats: finish_users_count 887 5089
+stats: error_unknown 1097 5089
+stats: newphase 0 9
+EndMonitor:{1668,470305,60533}
