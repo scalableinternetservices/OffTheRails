@@ -36,3 +36,4 @@ export const fetchRatings = () => API.get('/ratings');
 export const createRating = (newRating) => API.post('/ratings', newRating);
 export const updateRating = (id, updatedRating) => API.patch(`/ratings/${id}`, updatedRating);
 export const deleteRating = (id) => API.delete(`/ratings/${id}`);
+export const fetchRating = (id) => API.get(`/ratings/${id}`);

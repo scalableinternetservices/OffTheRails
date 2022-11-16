@@ -11,7 +11,7 @@ export default (items = {}, action) => {
     case UPDATE:
       return items.map((item) => item.id === action.payload.id ? action.payload : item);  
     case CREATE:
-        return [...items, action.payload];  
+      return [...items, action.payload];  
     case DELETE:
         return {...items.filter((item) => item.id !== action.payload)};
     default:
