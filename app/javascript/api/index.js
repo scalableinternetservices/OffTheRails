@@ -22,3 +22,12 @@ export const updateItem = (id, updatedItem) => API.patch(`/items/${id}`, updated
 export const deleteItem = (id) => API.delete(`/items/${id}`);
 
 export const fetchUser = (id) => API.get(`/users/${id}`);
+
+export const fetchUnpurchasedOrder = (user) => API.get(`/current_order`, { params: {user_id: user}});
+export const updateOrder = (id, updatedOrder) => API.patch(`/orders/${id}`, updatedOrder);
+
+export const createOrderItem = (orderItem) => API.post(`/order_items`, orderItem);
+export const fetchOrderItems = (order) => API.get(`/order_items`, { params: {order_id: order}});
+export const fetchOrderItemObjects = (order) => API.get(`/current_order_items`, { params: {order_id: order}});
+export const updateOrderItem = (id, updatedOrderItem) => API.patch(`/order_items/${id}`, updatedOrderItem);
+export const deleteOrderItem = (id) => API.delete(`/order_items/${id}`);

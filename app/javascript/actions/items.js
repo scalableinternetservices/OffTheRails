@@ -1,4 +1,4 @@
-import { FETCH_ALL_ITEM, FETCH_ONE_ITEM, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
+import { FETCH_ALL_ITEM, FETCH_ONE_ITEM, CREATE, UPDATE, DELETE, FETCH_ALL_ITEM_OBJECTS } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
 export const getItems = () => async (dispatch) => {
@@ -46,5 +46,15 @@ export const deleteItem = (id) => async (dispatch) => {
       dispatch({ type: DELETE, payload: id });
   } catch (error) {
       console.log(error);
+  }
+}
+
+export const getOrderItemObjects = (order) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchOrderItemObjects(order);
+
+    dispatch({ type: FETCH_ALL_ITEM_OBJECTS, payload: data });
+  } catch (error) {
+    console.log(error);
   }
 }

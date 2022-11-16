@@ -16,6 +16,9 @@ Naming/PredicateName:
 Style/CaseEquality:
   Enabled: false
 
+Naming/AccessorMethodName:
+  Enabled: false
+
 AllCops:
   NewCops: enable
   Exclude:

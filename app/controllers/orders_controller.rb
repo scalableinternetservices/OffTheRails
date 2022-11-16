@@ -6,9 +6,32 @@ class OrdersController < ApplicationController
 
   # GET /orders
   def index
-    @orders = Order.all
+    @user = User.find(params[:user_id])
+    @orders = @user.orders
 
     render json: @orders
+  end
+
+  def get_unpurchased_order
+    @user = User.find(params[:user_id])
+    @orders = @user.orders
+    @orders.each do |order|
+      next unless order.purchased == false
+
+      @order = order
+    end
+    if @order.nil?
+      @order = Order.new
+      @order.user_id = @user.id
+      @order.purchased = 'false'
+      if @order.save
+        render json: @order
+      else
+        render json: @order.errors, status: :unprocessable_entity
+      end
+    else
+      render json: @order
+    end
   end
 
   # GET /orders/1
@@ -19,7 +42,6 @@ class OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
-
     if @order.save
       render json: @order, status: :created, location: @order
     else

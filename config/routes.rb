@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
   get '/logged_in', to: 'sessions#is_logged_in?'
 
+  get '/current_order', to: 'orders#get_unpurchased_order'
+  get '/current_order_items', to: 'order_items#get_order_item_objects'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
