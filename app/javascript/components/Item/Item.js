@@ -60,7 +60,6 @@ const Item = () => {
     if (!item)
         return null;
 
-
     return (
         <div>
             <div>
@@ -93,7 +92,7 @@ const Item = () => {
                     )}
                 </Card>
 
-                <RatingForm itemId={id}/>
+                <RatingForm itemId={id} item={item} />
             </div>
             
             {
