@@ -1,6 +1,6 @@
 ### Create an instance
-_/bin/launch_tsung.sh_ :use this command to generate the ssh instance on which you will use to run tsung
-* ssh into the IP in the script's output
+* `/bin/launch_tsung.sh` :use this command on jumbox to generate the ssh instance on which you will use to run tsung
+* ssh into the IP in the script's output, either on jumpbox or locally
 
 ### After SSH
 * tsung_example.xml is a sample configuration file that establishes various connections to https://cs291.com
