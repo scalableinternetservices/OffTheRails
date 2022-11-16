@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Grid, Button  } from '@material-ui/core';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { useSelector } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -12,7 +13,7 @@ import { CardActionArea } from '@mui/material';
 import { TextField } from '@material-ui/core';
 import { useNavigate, Link } from 'react-router-dom';
 import { getUnpurchasedOrder, updateOrder } from '../../actions/order';
-import { getOrderItems, updateOrderItem } from '../../actions/order_item';
+import { getOrderItems, updateOrderItem, deleteOrderItem } from '../../actions/order_item';
 
 import useStyles from './styles';
 
@@ -28,6 +29,7 @@ const Cart = () => {
     const [ currentOrderItemId, set_order_item_id ] = useState(-10);
     const [ editing, set_editing ] = useState(false);
     const [ newQuantity, set_new_quantity ] = useState(0);
+    const currState = useSelector((state) => state);
 
     useEffect(() => {
         if (loading) {
@@ -71,8 +73,12 @@ const Cart = () => {
         set_editing(false);
     }
 
+    const deleteItemFromOrder = (id) => {
+        dispatch(deleteOrderItem(id));
+        console.log(currState);
+    }
+
     if (!orderItems.length) {
-        console.log("empty cart");
         return (
             <div>
                 <h1>Cart is empty</h1>
@@ -98,6 +104,9 @@ const Cart = () => {
                                         <div className={classes.overlay2}>
                                             <Button style={{color: 'black'}} size="small" onClick={() => {setUpOrderItemEdit(orderItem?.id)}}>
                                                 <MoreHorizIcon fontSize="medium" />
+                                            </Button>
+                                            <Button style={{color: 'black'}} size="small" onClick={() => {deleteItemFromOrder(orderItem?.id)}}>
+                                                <DeleteIcon fontSize="medium" />
                                             </Button>
                                         </div>
                                         <CardContent onClick={() => openItem(orderItem?.item.id)} >

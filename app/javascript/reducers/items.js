@@ -13,7 +13,7 @@ export default (items = {}, action) => {
     case CREATE:
         return [...items, action.payload];  
     case DELETE:
-        return items.filter((item) => item.id !== action.payload);
+        return {...items.filter((item) => item.id !== action.payload)};
     default:
       return items;
   }

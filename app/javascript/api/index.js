@@ -30,3 +30,4 @@ export const createOrderItem = (orderItem) => API.post(`/order_items`, orderItem
 export const fetchOrderItems = (order) => API.get(`/order_items`, { params: {order_id: order}});
 export const fetchOrderItemObjects = (order) => API.get(`/current_order_items`, { params: {order_id: order}});
 export const updateOrderItem = (id, updatedOrderItem) => API.patch(`/order_items/${id}`, updatedOrderItem);
+export const deleteOrderItem = (id) => API.delete(`/order_items/${id}`);
