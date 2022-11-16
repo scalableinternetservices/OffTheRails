@@ -6,25 +6,19 @@ class OrderItemsController < ApplicationController
 
   # GET /order_items
   def index
-    puts "GETTING ORDER ITEMS"
     @order = Order.find(params[:order_id])
-    puts @order.inspect
     @order_items = @order.order_items
-    puts @order_items.inspect
 
     render json: @order_items
   end
 
   def get_order_item_objects
-    puts "GETTING ORDER ITEM OBJECTS"
     @order = Order.find(params[:order_id])
-    @items = Array.new()
+    @items = []
     @order_items = @order.order_items
     @order_items.each do |order_item|
       @items.push(Item.find(order_item.item_id))
     end
-    puts "INSPECTING ITEMS"
-    puts @items.inspect
 
     render json: @items
   end

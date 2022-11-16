@@ -13,26 +13,18 @@ class OrdersController < ApplicationController
   end
 
   def get_unpurchased_order
-    puts "GETTING UNPURCHASED ORDER"
-    puts params.inspect
     @user = User.find(params[:user_id])
     @orders = @user.orders
-    puts @orders.inspect
     @orders.each do |order|
-      puts order.inspect
-      if order.purchased == false
-        puts "UNPURCHASED ORDER EXISTING"
-        @order = order
-        puts @order.inspect
-      end
+      next unless order.purchased == false
+
+      @order = order
     end
-    if @order == nil
-      @order = Order.new()
+    if @order.nil?
+      @order = Order.new
       @order.user_id = @user.id
-      @order.purchased = "false"
+      @order.purchased = 'false'
       if @order.save
-        puts "UNPURCHASED ORDER NEW"
-        puts @order.inspect
         render json: @order
       else
         render json: @order.errors, status: :unprocessable_entity
@@ -50,7 +42,6 @@ class OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
-
     if @order.save
       render json: @order, status: :created, location: @order
     else
