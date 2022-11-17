@@ -43,7 +43,7 @@ const Item = () => {
     }, [item]);
 
     useEffect(() => {
-        if (loading) {
+        if (loading && logged_in_user?.logged_in) {
             dispatch(getUnpurchasedOrder(logged_in_user?.user?.id)).then((res) => {
                 set_unpurchased_order_id(order?.id);
                 set_loading(false);
@@ -83,14 +83,13 @@ const Item = () => {
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         ${Number(item.price).toFixed(2)}
                     </Typography>
-                    <Typography variant="body2">
-                        item description here
-                    </Typography>
                     </CardContent>
-                    <CardActions>
-                        <TextField name="quantity" variant="outlined" placeholder="1" type="number" label="Quantity" fullWidth value={quantity} onChange={(e) => set_quantity(e.target.value)} />
-                        <Button size="small" onClick={() => addToCart() }>Add to Cart</Button>
-                    </CardActions>
+                    {(logged_in_user?.logged_in)&&(
+                        <CardActions>
+                            <TextField name="quantity" variant="outlined" placeholder="1" type="number" label="Quantity" fullWidth value={quantity} onChange={(e) => set_quantity(e.target.value)} />
+                            <Button size="small" onClick={() => addToCart() }>Add to Cart</Button>
+                        </CardActions>
+                    )}
                 </Card>
             </div>
 
