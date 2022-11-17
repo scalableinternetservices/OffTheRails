@@ -5,6 +5,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signout } from '../../actions/auth';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import HistoryIcon from '@mui/icons-material/History';
 
 const Navbar = () => {
     const classes = useStyles();
@@ -33,6 +34,9 @@ const Navbar = () => {
                 <div className={classes.profile}>
                     <Avatar component={Link} to="/cart" className={classes.purple} alt="cart">
                         <ShoppingCartIcon />
+                    </Avatar>
+                    <Avatar component={Link} to="/orders" className={classes.purple} alt="order">
+                        <HistoryIcon />
                     </Avatar>
                     <Typography component={Link} to="/account" className={classes.userName} variant="h6">{user.user.first_name}</Typography>
                     <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
