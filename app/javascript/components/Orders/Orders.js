@@ -19,42 +19,46 @@ const Orders = () => {
     const user = JSON.parse(localStorage.getItem('profile'));
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [ loading, set_loading ] = useState(true);
-
-    // useEffect(() => {
-    //     if (loading && user?.logged_in) {
-    //         dispatch(fetchOrders(user?.user?.id)).then((res) => {
-    //             set_loading(false);       
-    //         });
-    //     }
-    // });
 
     useEffect(() => {
         dispatch(fetchOrders(user?.user?.id));
     }, []);
+
+    const openOrder = (order) => {
+        navigate(`/orders/${order.id}`);
+    }
     
-    if (orders) {
-        return (
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simmple table">
-                    <TableHead>
-                        <TableRow key="header">
-                            <TableCell align="center">Orders</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {Array.from(orders).filter(order => order.purchased == true).map((order) => (
-                            <TableRow key={order.id}>
-                                <TableCell align="center">{order.updated_at}</TableCell>
+    if (user?.logged_in) {
+        if (orders) {
+            return (
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simmple table">
+                        <TableHead>
+                            <TableRow key="header">
+                                <TableCell align="center"><b>Orders</b></TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        );
+                        </TableHead>
+                        <TableBody>
+                            {Array.from(orders).filter(order => order.purchased == true).map((order) => (
+                                <TableRow key={order.id}>
+                                    <TableCell align="center" onClick={() => openOrder(order)}>{order.updated_at}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            );
+        } else {
+            return (
+             <div>this shouldn't ever happen I don't think</div>
+            );
+        }
     } else {
         return (
-         <div>hi</div>
+            <div>
+                <h1>Log in to view your order history</h1>
+                <Link to='/Auth'>Log In</Link>
+            </div>
         );
     }
 }
