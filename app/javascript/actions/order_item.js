@@ -33,9 +33,8 @@ export const updateOrderItem = (id, orderItem) => async (dispatch) => {
 
 export const deleteOrderItem = (id) => async (dispatch) => {
   try {
-    const { data } = await api.deleteOrderItem(id);
-
-    dispatch({ type: DELETE_ORDER_ITEM, payload: data });
+    await api.deleteOrderItem(id);
+    dispatch({ type: DELETE_ORDER_ITEM, payload: id });
   } catch (error) {
     console.log(error);
   }

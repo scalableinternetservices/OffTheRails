@@ -9,7 +9,7 @@ export default (order_items = {}, action) => {
     case UPDATE_ORDER_ITEM:
       return order_items.map((order_item) => order_item.id === action.payload.id ? action.payload : order_item); 
     case DELETE_ORDER_ITEM:
-      return {...order_items.filter((order_item) => order_item.id !== action.payload)};
+      return [...order_items.filter((order_item) => order_item.id != action.payload)];
     default:
       return order_items;
   }
