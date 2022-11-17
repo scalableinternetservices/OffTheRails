@@ -8,6 +8,7 @@ import User from './components/User/User';
 import Navbar from './components/Navbar/Navbar';
 import Cart from './components/Cart/Cart';
 import Orders from  './components/Orders/Orders';
+import Order from './components/Order/Order';
 
 
 const App = () => (
@@ -21,6 +22,7 @@ const App = () => (
                 <Route path="/users/:id" exact element={<User />}/>
                 <Route path="/orders" exact element={<Orders />}/>
                 <Route path="/cart" exact element={<Cart />}/>
+                <Route path="/orders/:id" exact element={<Order />}/>
             </Routes>
         </Container>
     </BrowserRouter>
