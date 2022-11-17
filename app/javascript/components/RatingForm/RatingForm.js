@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { getRatings } from '../../actions/ratings';
 import { getItem } from '../../actions/items';
 
 import useStyles from './styles';
@@ -22,7 +21,7 @@ const RatingForm = ( { itemId, item } ) => {
     //     dispatch(getRatings());
     // }, []);
 
-    const [ratingData, setRatingData] = useState({score: '', comment: ''});
+    const [ratingData, setRatingData] = useState({score: '', comment: '', validScore: false});
     
     const [myRating, setMyRating] = useState(false);
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -33,7 +32,7 @@ const RatingForm = ( { itemId, item } ) => {
         item.ratings.forEach(rating => {
             if (rating.user.id === user?.user?.id) {
                 setMyRating(true);
-                setRatingData({score: rating.score, comment: rating.comment });
+                setRatingData({score: rating.score, comment: rating.comment, validScore: validateRating(rating.score) });
             }
         });
 
@@ -70,7 +69,12 @@ const RatingForm = ( { itemId, item } ) => {
     }, [location]);
 
     const clear = () => {
-        setRatingData({score: '', comment: ''});
+        setRatingData({score: '', comment: '', validScore: false});
+    }
+
+    const validateRating = (rating) => {
+        const ratingInt = parseInt(rating);
+        return ratingInt >= 0 && ratingInt <= 5;
     }
 
     if(!user?.logged_in) {
@@ -87,9 +91,9 @@ const RatingForm = ( { itemId, item } ) => {
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant="h6">{myRating ? `Editing review` : 'Post a review!'}</Typography>
-                <TextField name="score" required variant="outlined" placeholder="Score" type="number" label="Rating" fullWidth value={ratingData.score} onChange={(e) => setRatingData({ ...ratingData, score: e.target.value })} />
+                <TextField name="score" required variant="outlined" placeholder="Score" type="number" label="Rating" fullWidth value={ratingData.score} onChange={(e) => setRatingData({ ...ratingData, score: e.target.value, validScore: validateRating(e.target.value) })} />
                 <TextField name="comment" required variant="outlined" label="Comment" fullWidth value={ratingData.comment} onChange={(e) => setRatingData({ ...ratingData, comment: e.target.value })} />
-                <Button className={classes.buttonSubmit} disabled={!ratingData.score || !ratingData.comment} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
+                <Button className={classes.buttonSubmit} disabled={!ratingData.score || !ratingData.comment || !ratingData.validScore} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
                 {myRating &&
                     <Button className={classes.buttonPad} variant="contained" color="error" size="small" onClick={handleDelete} fullWidth>Delete</Button>

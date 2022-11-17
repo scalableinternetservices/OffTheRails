@@ -79,7 +79,7 @@ const Item = () => {
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                         Seller: {user ? user.first_name : "N/A"}
                     </Typography>
-                    <Rating name="read-only" value={3} readOnly />
+                    <Rating name="read-only" value={(item.ratings && item.ratings.length > 0) ? item.ratings.reduce((a, b) => a + b.score, 0) / item.ratings.length : 0} readOnly />
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         ${Number(item.price).toFixed(2)}
                     </Typography>
