@@ -32,7 +32,7 @@ const Cart = () => {
     const currState = useSelector((state) => state);
 
     useEffect(() => {
-        if (loading) {
+        if (loading && user?.logged_in) {
             dispatch(getUnpurchasedOrder(user?.user?.id)).then((res) => {
                 dispatch(getOrderItems(order?.id));
                 set_total_price(getTotal());
@@ -78,7 +78,16 @@ const Cart = () => {
         console.log(currState);
     }
 
-    if (!orderItems.length) {
+    if(user?.logged_out){
+        return(
+            <div>
+                <h1>Log in to view your cart!</h1>
+                <Link to='/Auth'>Log in here!</Link>
+            </div>
+        )
+    }
+
+    else if (!orderItems.length) {
         return (
             <div>
                 <h1>Cart is empty</h1>
@@ -86,6 +95,7 @@ const Cart = () => {
             </div>
         );
     }
+
     else {
         return (
             <div>
