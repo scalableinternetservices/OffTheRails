@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useStyles from './styles';
-import { getItem, getRating } from '../../actions/items';
+import { getItem } from '../../actions/items';
 import { getUser } from '../../actions/users';
 import { useDispatch, useSelector } from 'react-redux';
 import CardMedia from '@mui/material/CardMedia';
@@ -15,6 +15,7 @@ import { createOrderItem } from '../../actions/order_item';
 import { TextField } from '@material-ui/core';
 import Rating from '@mui/material/Rating';
 import Ratings from '../Ratings/Ratings';
+import RatingForm from '../RatingForm/RatingForm';
 
 const Item = () => {
     const classes = useStyles();
@@ -59,7 +60,6 @@ const Item = () => {
     if (!item)
         return null;
 
-
     return (
         <div>
             <div>
@@ -79,7 +79,7 @@ const Item = () => {
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                         Seller: {user ? user.first_name : "N/A"}
                     </Typography>
-                    <Rating name="read-only" value={3} readOnly />
+                    <Rating name="read-only" value={(item.ratings && item.ratings.length > 0) ? item.ratings.reduce((a, b) => a + b.score, 0) / item.ratings.length : 0} readOnly />
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         ${Number(item.price).toFixed(2)}
                     </Typography>
@@ -91,8 +91,10 @@ const Item = () => {
                         </CardActions>
                     )}
                 </Card>
-            </div>
 
+                <RatingForm itemId={id} item={item} />
+            </div>
+            
             {
                 item ? item.ratings.map((r) => <Ratings title="Review" reviewer={`${r.user.first_name} ${r.user.last_name}`} review={r.comment} stars={r.score}></Ratings>) : null
             }

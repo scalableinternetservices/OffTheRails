@@ -8,6 +8,7 @@ import User from './components/User/User';
 import Navbar from './components/Navbar/Navbar';
 import Cart from './components/Cart/Cart';
 
+
 const App = () => (
     <BrowserRouter>
         <Container maxWidth="lg">

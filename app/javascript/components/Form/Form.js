@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import useStyles from './styles';
 import { createItem, updateItem, deleteItem } from '../../actions/items';
 
-const Form = ( { currentId, setCurrentId }) => {
+const Form = ( { currentId, setCurrentId } ) => {
     const [itemData, setItemData] = useState({name: '', price: '', image_link: ''});
     const item = useSelector((state) => currentId ? state.items.find((p) => p.id === currentId) : null);
     const classes = useStyles();
@@ -39,7 +39,6 @@ const Form = ( { currentId, setCurrentId }) => {
         setItemData({name: '', price: '', image_link: ''});
     }
 
-
     if(!user?.logged_in) {
         return (
             <Paper className={classes.paper}>
@@ -49,7 +48,7 @@ const Form = ( { currentId, setCurrentId }) => {
             </Paper>
         )
     }
-    console.log(itemData);
+
     return (
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
