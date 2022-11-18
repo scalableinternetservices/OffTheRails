@@ -21,6 +21,7 @@ const Cart = () => {
     const classes = useStyles();
     const orderItems = useSelector((state) => state.order_items);
     const { order } = useSelector((state) => state.orders);
+    const curr_state = useSelector((state) => state);
     const user = JSON.parse(localStorage.getItem('profile'));
     const [ loading, set_loading ] = useState(true);
     const [ totalPrice, set_total_price ] = useState(0);
@@ -29,7 +30,6 @@ const Cart = () => {
     const [ currentOrderItemId, set_order_item_id ] = useState(-10);
     const [ editing, set_editing ] = useState(false);
     const [ newQuantity, set_new_quantity ] = useState(0);
-    const currState = useSelector((state) => state);
 
     useEffect(() => {
         if (loading && user?.logged_in) {
@@ -40,6 +40,12 @@ const Cart = () => {
             });
         }
     });
+
+    console.log("current state: ");
+    console.log(curr_state);
+    console.log("order items state: ");
+    console.log(orderItems);
+    console.log(orderItems.length);
 
     useEffect(() => {
         set_total_price(getTotal());
@@ -63,8 +69,9 @@ const Cart = () => {
         return totalPrice;
     }
 
-    const setUpOrderItemEdit = (id) => {
+    const setUpOrderItemEdit = (id, quantity) => {
         set_order_item_id(id);
+        set_new_quantity(quantity);
         set_editing(!editing);
     }
 
@@ -75,7 +82,6 @@ const Cart = () => {
 
     const deleteItemFromOrder = (id) => {
         dispatch(deleteOrderItem(id));
-        console.log(currState);
     }
 
     if(user?.logged_out){
@@ -101,8 +107,8 @@ const Cart = () => {
             <div>
                 <Grid className={classes.container} container alignItems="stretch" spacing={3}>
                     {orderItems.map((orderItem) => (
-                        <Grid key={orderItem?.id} orderItem xs={12} sm={6} md={6}>
-                                <Card sx={{ maxWidth: 345 }}>
+                        <Grid key={orderItem?.id} orderItem xs={12} sm={3} md={4}>
+                                <Card sx={{ maxWidth: 345, margin: 1 }}>
                                     <CardActionArea>
                                         <CardMedia onClick={() => openItem(orderItem?.item.id)}
                                             component="img"
@@ -112,10 +118,10 @@ const Cart = () => {
                                             sx={{ padding: "1em 1em 0 1em", objectFit: "contain" }}
                                         />
                                         <div className={classes.overlay2}>
-                                            <Button style={{color: 'black'}} size="small" onClick={() => {setUpOrderItemEdit(orderItem?.id)}}>
+                                            <Button style={{color: 'black'}} size="small" onClick={() => {setUpOrderItemEdit(orderItem?.id, orderItem?.quantity)}}>
                                                 <MoreHorizIcon fontSize="medium" />
                                             </Button>
-                                            <Button style={{color: 'black'}} size="small" onClick={() => {deleteItemFromOrder(orderItem?.id)}}>
+                                            <Button style={{color: 'black'}} size="small" onClick={() => {console.log("ORDERITEM ID: ", orderItem?.id);deleteItemFromOrder(orderItem?.id)}}>
                                                 <DeleteIcon fontSize="medium" />
                                             </Button>
                                         </div>
