@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Grid, Button  } from '@material-ui/core';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useSelector } from 'react-redux';
 import Card from '@mui/material/Card';
@@ -118,10 +118,10 @@ const Cart = () => {
                                             sx={{ padding: "1em 1em 0 1em", objectFit: "contain" }}
                                         />
                                         <div className={classes.overlay2}>
-                                            <Button style={{color: 'black'}} size="small" onClick={() => {setUpOrderItemEdit(orderItem?.id, orderItem?.quantity)}}>
-                                                <MoreHorizIcon fontSize="medium" />
+                                            <Button style={{margin: 1, color: 'white', backgroundColor: 'rgba(0,0,0,0.26)'}} size="small" onClick={() => {setUpOrderItemEdit(orderItem?.id, orderItem?.quantity)}}>
+                                                <EditIcon fontSize="medium" />
                                             </Button>
-                                            <Button style={{color: 'black'}} size="small" onClick={() => {console.log("ORDERITEM ID: ", orderItem?.id);deleteItemFromOrder(orderItem?.id)}}>
+                                            <Button style={{margin: 1, color: 'white', backgroundColor: 'rgba(0,0,0,0.26)'}} size="small" onClick={() => {deleteItemFromOrder(orderItem?.id)}}>
                                                 <DeleteIcon fontSize="medium" />
                                             </Button>
                                         </div>
