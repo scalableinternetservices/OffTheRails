@@ -31,6 +31,7 @@ const Items = ({ setCurrentId }) => {
         !items.length ? <LinearProgress /> : (
             <Grid className={classes.container} container alignItems="stretch" spacing={3}>
             {items.map((item) => (
+                (item.show && item.quantity > 0) || (user.user && item.seller_id == user.user.id) ? (
                 <Grid key={item.id} item xs={12} sm={6} md={6}>
                     <Card sx={{ maxWidth: 345 }}>
                         <CardActionArea >
@@ -54,10 +55,13 @@ const Items = ({ setCurrentId }) => {
                                 <Typography variant="body2" color="text.secondary">
                                 ${Number(item.price).toFixed(2)}
                                 </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                Quantity: {item.quantity}
+                                </Typography>
                             </CardContent>
                         </CardActionArea>
                     </Card>                
-                </Grid>
+                </Grid>): null
             ))}
         </Grid>
         )  
