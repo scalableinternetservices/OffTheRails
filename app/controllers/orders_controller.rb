@@ -51,7 +51,17 @@ class OrdersController < ApplicationController
 
   # PATCH/PUT /orders/1
   def update
+    @order.order_items.each do |order_item|
+      @item = Item.find(order_item.item_id)
+      return render json: @order if @item.quantity < order_item.quantity
+    end
+
     if @order.update(order_params)
+      @order.order_items.each do |order_item|
+        item = Item.find(order_item.item_id)
+        item.quantity = item.quantity - order_item.quantity
+        item.save
+      end
       render json: @order
     else
       render json: @order.errors, status: :unprocessable_entity

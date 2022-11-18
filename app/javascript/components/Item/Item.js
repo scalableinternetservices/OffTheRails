@@ -83,6 +83,9 @@ const Item = () => {
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         ${Number(item.price).toFixed(2)}
                     </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        Quantity: {item.quantity}
+                    </Typography>
                     </CardContent>
                     {(logged_in_user?.logged_in)&&(
                         <CardActions>
