@@ -8,10 +8,7 @@ import User from './components/User/User';
 import Navbar from './components/Navbar/Navbar';
 import Cart from './components/Cart/Cart';
 import Orders from  './components/Orders/Orders';
-<<<<<<< HEAD
 import Order from './components/Order/Order';
-=======
->>>>>>> sp added orders page and route and button
 
 
 const App = () => (

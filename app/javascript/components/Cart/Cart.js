@@ -57,7 +57,7 @@ const Cart = () => {
 
     const purchaseOrder = () => {
         dispatch(updateOrder(order?.id, {user_id: user?.user?.id, purchased: true})).then((res) => {
-            navigate(`/`);
+            navigate(`/orders/${order?.id}`);
         });
     }
 
