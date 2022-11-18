@@ -31,7 +31,7 @@ const Items = ({ setCurrentId }) => {
         !items.length ? <LinearProgress /> : (
             <Grid className={classes.container} container alignItems="stretch" spacing={3}>
             {items.map((item) => (
-                item.show || (user && item.seller_id == user.user.id) ? (
+                item.show || (user.user && item.seller_id == user.user.id) ? (
                 <Grid key={item.id} item xs={12} sm={6} md={6}>
                     <Card sx={{ maxWidth: 345 }}>
                         <CardActionArea >
