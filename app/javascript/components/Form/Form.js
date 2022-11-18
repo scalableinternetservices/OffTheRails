@@ -33,7 +33,7 @@ const Form = ( { currentId, setCurrentId } ) => {
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location])
-
+    
     const clear = () => {
         setCurrentId(0);
         setItemData({name: '', price: '', image_link: '', show: '', quantity: ''});
