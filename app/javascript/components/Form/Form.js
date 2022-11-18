@@ -8,7 +8,7 @@ import useStyles from './styles';
 import { createItem, updateItem, deleteItem } from '../../actions/items';
 
 const Form = ( { currentId, setCurrentId } ) => {
-    const [itemData, setItemData] = useState({name: '', price: '', image_link: ''});
+    const [itemData, setItemData] = useState({name: '', price: '', image_link: '', show: '', quantity: ''});
     const item = useSelector((state) => currentId ? state.items.find((p) => p.id === currentId) : null);
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -55,6 +55,7 @@ const Form = ( { currentId, setCurrentId } ) => {
                 <Typography variant="h6">{currentId ? `Editing item: "${item.name}"` : 'Sell an item!'}</Typography>
                 <TextField name="name" required variant="outlined" label="Item Name" fullWidth value={itemData.name} onChange={(e) => setItemData({ ...itemData, name: e.target.value })} />
                 <TextField name="price" required variant="outlined" placeholder="Price" type="number" label="Price" fullWidth value={itemData.price} onChange={(e) => setItemData({ ...itemData, price: e.target.value })} />
+                <TextField name="quantity" required variant="outlined" placeholder="Quantity" type="number" label="Quantity" fullWidth value={itemData.quantity} onChange={(e) => setItemData({ ...itemData, quantity: e.target.value })} />
                 <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({base64}) => setItemData({ ...itemData, image_link: base64 })} /></div>
                 <Button className={classes.buttonSubmit} disabled={!itemData.name || !itemData.price || !itemData.image_link} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
