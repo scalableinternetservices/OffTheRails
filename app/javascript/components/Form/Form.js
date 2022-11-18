@@ -36,7 +36,7 @@ const Form = ( { currentId, setCurrentId } ) => {
 
     const clear = () => {
         setCurrentId(0);
-        setItemData({name: '', price: '', image_link: ''});
+        setItemData({name: '', price: '', image_link: '', show: '', quantity: ''});
     }
 
     if(!user?.logged_in) {
