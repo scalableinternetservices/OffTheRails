@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Paper } from '@material-ui/core';
+import { TextField, Button, Typography, Paper, Checkbox, FormControlLabel } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -59,7 +59,10 @@ const Form = ( { currentId, setCurrentId } ) => {
                 <Button className={classes.buttonSubmit} disabled={!itemData.name || !itemData.price || !itemData.image_link} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
                 {currentId !== 0 &&
-                    <Button className={classes.buttonPad} variant="contained" color="error" size="small" onClick={() => {dispatch(deleteItem(item.id)); clear();}} fullWidth>Delete</Button>
+                    <>
+                        <FormControlLabel control={<Checkbox checked={!!itemData.show} onClick={() => {setItemData({ ...itemData, show: !itemData.show });}} />} label="Show?" />
+                        <Button className={classes.buttonPad} variant="contained" color="secondary" size="small" onClick={() => {dispatch(deleteItem(item.id)); clear();}} fullWidth>Delete</Button>
+                    </>
                 }
             </form>
         </Paper>
