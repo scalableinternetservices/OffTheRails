@@ -89,13 +89,20 @@ const Order = () => {
                                         </CardContent>
                                             
                                     </CardActionArea>
-                                </Card>      
+                                </Card>
+                                
                         </Grid>
                     ))}
                 </Grid>
                 <br></br>
                 <br></br>
-                <p>Total Price: ${Number(totalPrice).toFixed(2)}</p>
+                <div align="center">
+                    <Card sx={{margin: 1}, {boxShadow: 10}, { maxWidth: 345 }} align="center">
+                        <CardContent>
+                            <p className={classes.totalPrice}>Total Price: ${Number(totalPrice).toFixed(2)}</p>
+                        </CardContent>
+                    </Card>  
+                </div> 
             </div>
         );
     }
