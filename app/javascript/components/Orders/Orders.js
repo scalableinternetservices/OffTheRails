@@ -27,9 +27,23 @@ const Orders = () => {
     const openOrder = (order) => {
         navigate(`/orders/${order.id}`);
     }
+
+    const formatDate = (date) => {
+        var month = date.getMonth();
+        var day = date.getDay();
+        var year = date.getFullYear();
+        var hour= date.getHours();
+        var min= date.getMinutes();
+        if (min < 10) { 
+            min = '0' + min;
+        }
+        var strTime = hour + ':' + min;
+        return((month + 1) + "/" + (day) + "/" + (year) + " " + strTime);
+    }
     
     if (user?.logged_in) {
         if (orders) {
+            console.log("stupid errors");
             return (
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} aria-label="simmple table">
@@ -40,8 +54,8 @@ const Orders = () => {
                         </TableHead>
                         <TableBody>
                             {Array.from(orders).filter(order => order.purchased == true).map((order) => (
-                                <TableRow key={order.id}>
-                                    <TableCell align="center" onClick={() => openOrder(order)}>{order.updated_at}</TableCell>
+                                <TableRow hover key={order.id}>
+                                    <TableCell align="center"  onClick={() => openOrder(order)}>{formatDate(new Date(order.updated_at))}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
