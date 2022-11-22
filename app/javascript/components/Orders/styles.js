@@ -59,7 +59,4 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
-  totalPrice: {
-    fontSize: 'x-large',
-  },
 }));
