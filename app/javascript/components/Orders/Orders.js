@@ -54,7 +54,7 @@ const Orders = () => {
                         </TableHead>
                         <TableBody>
                             {Array.from(orders).filter(order => order.purchased == true).map((order) => (
-                                <TableRow hover key={order.id}>
+                                <TableRow hover sx={{cursor:'pointer'}} key={order.id}>
                                     <TableCell align="center"  onClick={() => openOrder(order)}>{formatDate(new Date(order.updated_at))}</TableCell>
                                 </TableRow>
                             ))}
