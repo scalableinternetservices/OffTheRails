@@ -1,7 +1,11 @@
-import { FETCH_ALL_ITEM, FETCH_ONE_ITEM, CREATE, UPDATE, DELETE, FETCH_ALL_ITEM_OBJECTS } from '../constants/actionTypes';
+import { FETCH_ITEM_PAGE, FETCH_ALL_ITEM, FETCH_ONE_ITEM, CREATE, UPDATE, DELETE, FETCH_ALL_ITEM_OBJECTS } from '../constants/actionTypes';
 
 export default (items = {}, action) => {
+  console.log("action payload");
+  console.log(action.payload);
   switch (action.type) {
+    case FETCH_ITEM_PAGE:
+      return action.payload;
     case FETCH_ALL_ITEM:
       return action.payload;
     case FETCH_ALL_ITEM_OBJECTS:

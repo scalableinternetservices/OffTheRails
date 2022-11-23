@@ -41,12 +41,6 @@ const Cart = () => {
         }
     });
 
-    console.log("current state: ");
-    console.log(curr_state);
-    console.log("order items state: ");
-    console.log(orderItems);
-    console.log(orderItems.length);
-
     useEffect(() => {
         set_total_price(getTotal());
     }, [orderItems]);

@@ -15,6 +15,7 @@ export const signIn = (formData) => API.post('/login', formData);
 export const signUp = (formData) => API.post('/users', formData);
 export const signOut = () => API.post('/logout');
 
+export const fetchItemPage = (id) => API.get(`/items/page/${id}`);
 export const fetchItems = () => API.get('/items');
 export const fetchItem = (id) => API.get(`/items/${id}`);
 export const createItem = (newItem) => API.post('/items', newItem);

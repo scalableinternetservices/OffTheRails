@@ -14,9 +14,6 @@ const RatingForm = ( { itemId, item } ) => {
     const currState = useSelector((state) => state);
     const ratings = useSelector((state) => state.ratings);
 
-    console.log(currState);
-    console.log(typeof(currState.ratings));
-
     // useEffect(() => {
     //     dispatch(getRatings());
     // }, []);

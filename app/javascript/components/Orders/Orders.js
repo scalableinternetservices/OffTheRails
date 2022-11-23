@@ -43,7 +43,6 @@ const Orders = () => {
     
     if (user?.logged_in) {
         if (orders) {
-            console.log("stupid errors");
             return (
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} aria-label="simmple table">

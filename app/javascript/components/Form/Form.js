@@ -9,7 +9,7 @@ import { createItem, updateItem, deleteItem } from '../../actions/items';
 
 const Form = ( { currentId, setCurrentId } ) => {
     const [itemData, setItemData] = useState({name: '', price: '', image_link: '', show: '', quantity: ''});
-    const item = useSelector((state) => currentId ? state.items.find((p) => p.id === currentId) : null);
+    const item = useSelector((state) => currentId ? state.items?.items.find((p) => p.id === currentId) : null);
     const classes = useStyles();
     const dispatch = useDispatch();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -38,6 +38,12 @@ const Form = ( { currentId, setCurrentId } ) => {
         setCurrentId(0);
         setItemData({name: '', price: '', image_link: '', show: '', quantity: ''});
     }
+
+    useEffect(() => {
+        if(currentId === 0) {
+            clear();
+        }
+    }, [currentId])
 
     if(!user?.logged_in) {
         return (
