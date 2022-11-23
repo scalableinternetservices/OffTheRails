@@ -10,7 +10,6 @@ import Cart from './components/Cart/Cart';
 import Orders from  './components/Orders/Orders';
 import Order from './components/Order/Order';
 
-
 const App = () => (
     <BrowserRouter>
         <Container maxWidth="lg">

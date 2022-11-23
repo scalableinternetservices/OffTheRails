@@ -4,11 +4,14 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[show update destroy]
 
-  # GET /items
+  # GET /items/page/:page
   def index
-    @items = Item.all
-
-    render json: @items
+    @items = Item.order(:updated_at).page params[:page]
+    @max_pages = Item.page(1).total_pages
+    render json: { 
+      items: @items,
+      max_pages: @max_pages
+    }
   end
 
   # GET /items/1

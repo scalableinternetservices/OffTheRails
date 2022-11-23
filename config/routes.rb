@@ -2,7 +2,9 @@
 
 Rails.application.routes.draw do
   resources :order_items
-  resources :items
+  resources :items do 
+    get '/page/:page', action: :index, on: :collection
+  end 
   resources :ratings
   resources :orders
   resources :users
