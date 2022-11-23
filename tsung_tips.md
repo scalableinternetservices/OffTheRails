@@ -2,6 +2,8 @@
 * `/bin/launch_tsung.sh` :use this command on jumbox to generate the ssh instance on which you will use to run tsung
 * ssh into the IP in the script's output, either on jumpbox or locally
 
+* an instance is already created, just run `ssh ec2-user@35.88.18.219` from your local machine
+
 ### After SSH
 * tsung_example.xml is a sample configuration file that establishes various connections to https://cs291.com
 * create your own load file to test eb, an example is included in the OffTheRails repository.
