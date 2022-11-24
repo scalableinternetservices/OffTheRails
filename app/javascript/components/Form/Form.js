@@ -57,9 +57,7 @@ const Form = ( { currentId, setCurrentId } ) => {
                 <TextField name="price" required variant="outlined" placeholder="Price" type="number" label="Price" fullWidth value={itemData.price} onChange={(e) => setItemData({ ...itemData, price: e.target.value })} />
                 <TextField name="quantity" required variant="outlined" placeholder="Quantity" type="number" label="Quantity" fullWidth value={itemData.quantity} onChange={(e) => setItemData({ ...itemData, quantity: e.target.value })} />
                 <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({base64}) => setItemData({ ...itemData, image_link: base64 })} /></div>
-                {currentId !== 0 &&
-                    <FormControlLabel control={<Checkbox checked={!!itemData.show} onClick={() => {setItemData({ ...itemData, show: !itemData.show });}} />} label="Show?" />
-                }
+                <FormControlLabel control={<Checkbox checked={!!itemData.show} onClick={() => {setItemData({ ...itemData, show: !itemData.show });}} />} label="Show?" />
                 <Button className={classes.buttonSubmit} disabled={!itemData.name || !itemData.price || !itemData.image_link} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
                 {currentId !== 0 &&
