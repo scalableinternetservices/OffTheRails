@@ -42,7 +42,7 @@ const Items = ({ setCurrentId }) => {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location])
 
-    if(!items.length) {
+    if(!items?.length) {
         return (
             <Paper className={classes.paper}>
                 <Typography variant="h6" align="center">
@@ -55,40 +55,40 @@ const Items = ({ setCurrentId }) => {
     return (
         <>
         <Grid className={classes.container} container alignItems="stretch" spacing={3}>
-                {items.map((item) => (
-                    (item.show && item.quantity > 0) || (user.user && item.seller_id == user.user.id) ? (
-                        <Grid key={item.id} item xs={12} sm={6} md={6}>
-                        <Card sx={{ maxWidth: 345 }}>
-                            <CardActionArea >
-                                <CardMedia onClick={() => openItem(item)}
-                                    component="img"
-                                    height="140"
-                                    image={item.image_link}
-                                    alt={item.name}
-                                />
-                                {( user?.user?.id === item?.seller_id) && (
-                                    <div className={classes.overlay2}>
-                                        <Button style={{color: 'white', backgroundColor: 'rgba(0,0,0,0.26)'}} size="small" onClick={() => {setCurrentId(item.id)}}>
-                                            <EditIcon fontSize="medium" />
-                                        </Button>
-                                    </div>
-                                )}
-                                <CardContent onClick={() => openItem(item)}>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                    {item.name}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                    ${Number(item.price).toFixed(2)}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                    Quantity: {item.quantity}
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>                
-                    </Grid>): null
-                ))}
-            </Grid>
+            {items.map((item) => (
+                (item.show && item.quantity > 0) || (user.user && item.seller_id == user.user.id) ? (
+                    <Grid key={item.id} item xs={12} sm={6} md={6}>
+                    <Card sx={{ maxWidth: 345 }}>
+                        <CardActionArea >
+                            <CardMedia onClick={() => openItem(item)}
+                                component="img"
+                                height="140"
+                                image={item.image_link}
+                                alt={item.name}
+                            />
+                            {( user?.user?.id === item?.seller_id) && (
+                                <div className={classes.overlay2}>
+                                    <Button style={{color: 'white', backgroundColor: 'rgba(0,0,0,0.26)'}} size="small" onClick={() => {setCurrentId(item.id)}}>
+                                        <EditIcon fontSize="medium" />
+                                    </Button>
+                                </div>
+                            )}
+                            <CardContent onClick={() => openItem(item)}>
+                                <Typography gutterBottom variant="h5" component="div">
+                                {item.name}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                ${Number(item.price).toFixed(2)}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                Quantity: {item.quantity}
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                    </Card>                
+                </Grid>): null
+            ))}
+        </Grid>
         <Pagination current_page={currPage} total_pages={max_pages} onPaginationClick={onPaginationClick}/>
         </>
     );
