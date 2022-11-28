@@ -15,10 +15,6 @@ import { useDispatch } from 'react-redux';
 
 import useStyles from './styles';
 
-// TODO:
-// new GET call to get by page (which sets the items)
-// happens in the onPaginationClick
-// add to API stuff
 const Items = ({ setCurrentId }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -46,7 +42,7 @@ const Items = ({ setCurrentId }) => {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location])
 
-    if(!items.length) {
+    if(!items?.length) {
         return (
             <Paper className={classes.paper}>
                 <Typography variant="h6" align="center">
@@ -57,6 +53,7 @@ const Items = ({ setCurrentId }) => {
     }
 
     return (
+        <>
         <Grid className={classes.container} container alignItems="stretch" spacing={3}>
         {items.map((item) => (
             (item.show && item.quantity > 0) || (user.user && item.seller_id == user.user.id) ? (
@@ -92,7 +89,8 @@ const Items = ({ setCurrentId }) => {
             </Grid>): null
         ))}
         </Grid>
-        
+        <Pagination current_page={currPage} total_pages={max_pages} onPaginationClick={onPaginationClick}/>
+        </>
     );
 }
 
