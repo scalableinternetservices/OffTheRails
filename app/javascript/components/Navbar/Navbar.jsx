@@ -35,7 +35,7 @@ const Navbar = () => {
                     <Avatar component={Link} to="/cart" className={classes.purple} alt="cart">
                         <ShoppingCartIcon />
                     </Avatar>
-                    <Avatar component={Link} to="/orders" className={classes.purple} alt="order">
+                    <Avatar component={Link} to="/order_history" className={classes.purple} alt="order">
                         <HistoryIcon />
                     </Avatar>
                     <Typography component={Link} to="/account" className={classes.userName} variant="h6">{user.user.first_name}</Typography>
