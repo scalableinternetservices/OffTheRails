@@ -7,8 +7,8 @@
   </clients>
 
   <servers>
-    <!--change to EB instance-->
-    <server host="cs291.com" port="443" type="ssl"></server>
+    <!--TODO: replace cs291.com with eb url-->
+    <server host="localhost" port="3000" type="ssl"></server>
   </servers>
   
   <!-- <load>
@@ -20,30 +20,30 @@
     </arrivalphase>
   </load> -->
   <load>
-    <arrivalphase phase="1" duration="5" unit="second">
+    <arrivalphase phase="1" duration="1" unit="minute">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
-    <arrivalphase phase="2" duration="5" unit="second">
+    <arrivalphase phase="2" duration="1" unit="minute">
       <users arrivalrate="2" unit="second"></users>
     </arrivalphase>
-    <arrivalphase phase="3" duration="5" unit="second">
+    <arrivalphase phase="3" duration="1" unit="minute">
       <users arrivalrate="4" unit="second"></users>
     </arrivalphase>
-    <arrivalphase phase="4" duration="5" unit="second">
+    <arrivalphase phase="4" duration="1" unit="minute">
       <users arrivalrate="8" unit="second"></users>
     </arrivalphase>
-    <arrivalphase phase="5" duration="5" unit="second">
+    <arrivalphase phase="5" duration="1" unit="minute">
       <users arrivalrate="16" unit="second"></users>
     </arrivalphase>
-    <arrivalphase phase="6" duration="5" unit="second">
+    <arrivalphase phase="6" duration="1" unit="minute">
       <users arrivalrate="32" unit="second"></users>
     </arrivalphase>
-    <arrivalphase phase="7" duration="5" unit="second">
+    <arrivalphase phase="7" duration="1" unit="minute">
       <users arrivalrate="64" unit="second"></users>
     </arrivalphase>
-    <arrivalphase phase="8" duration="5" unit="second">
+    <!-- <arrivalphase phase="8" duration="1" unit="second">
       <users arrivalrate="128" unit="second"></users>
-    </arrivalphase>
+    </arrivalphase> -->
   </load>
 
   <options>
@@ -52,11 +52,62 @@
   </options>
 
   <sessions>
-    <!--TODO-->
+    <!--This session simulates a logged-in user browsing through the items on the homepage.-->
     <session name="scenario_1" type="ts_http" weight="1">
+      <setdynvars sourcetype="random_number" start="1" end="100">
+        <var name="rand_n" />
+      </setdynvars>
       <request><http method="GET" url="/"></http></request>
-      <request><http method="GET" url="/schedule/"></http></request>
-      <request><http method="GET" url="/project/"></http></request>
+      <request subst="true"><http method="POST" url="/login/" contents='{"first_name":"","last_name":"","email":"e%%_rand_n%%@mail.com","password":"pw","password_confirmation":""}'></http></request>
+      <request><http method="GET" url="/"></http></request>
+      <thinktime value="3" random="true"></thinktime>
+      <request><http method="POST" url="/logout/"></http></request>
     </session>
+
+    <!--This session simulates a non-logged in user browsing through items on the homepage.-->
+    <session name="scenario_2" type="ts_http" weight="1">
+      <setdynvars sourcetype="random_number" start="1" end="100">
+        <var name="rand_n1" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="1" end="100">
+        <var name="rand_n2" />
+      </setdynvars>
+      <request><http method="GET" url="/"></http></request>
+      <request subst="true"><http method="GET" url="/items/%%_rand_n1%%/"></http></request>
+      <thinktime value="3" random="true"></thinktime>
+      <request><http method="GET" url="/"></http></request>
+      <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
+      <thinktime value="3" random="true"></thinktime>
+    </session>
+
+    <!---->
+    <!--This session simulates an authenticated user viewing and purchasing one item, then looking at their purchase history.-->
+    <session name="scenario_3" type="ts_http" weight="1">
+      <setdynvars sourcetype="random_number" start="1" end="100">
+        <var name="rand_n1" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="1" end="100">
+        <var name="rand_n2" />
+      </setdynvars>
+      <request><http method="GET" url="/"></http></request>
+      <request subst="true"><http method="POST" url="/login/" contents='{"first_name":"","last_name":"","email":"e%%_rand_n1%%@mail.com","password":"pw","password_confirmation":""}'></http></request>
+      <request><http method="GET" url="/"></http></request>
+      <thinktime value="3" random="true"></thinktime>
+      <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
+      <!-- purchase the item -->
+      <request subst="true"><http method="GET" ></http></request>
+      <!-- view purchase history -->
+      <!-- logout -->
+      <thinktime value="3" random="true"></thinktime>
+      <request><http method="POST" url="/logout/"></http></request>
+    </session>
+
+    <!-- This session simulates an authenticated user creating, updating, and deleting a new item listing.
+    <session name="scenario_4" type="ts_http" weight="1">
+    </session>
+
+    <!--This session simulates an authenticated user leaving a review, editing their review, then deleting it.-->
+    <session name="scenario_5" type="ts_http" weight="1">
+    </session> -->
   </sessions>
 </tsung>

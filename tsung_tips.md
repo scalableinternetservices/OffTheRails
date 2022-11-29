@@ -34,12 +34,14 @@
 * What order should the optimizations be applied in? Vertical/horizontal scaling first, then identify bottlenecks and apply the appropriate optimization(s)
 * In the tsung output logs, look for 500 and 502 requests, page response times, concurrent users, and anything else that may be included in the report or indicates a bug with our frontend (ex: 400s errors)
 
+
 #### Phase 2 - Cumulative Load Testing
 * __Objective: test performance of web application in a real-world usage scenario__
 * Tsung test should include all sessions, each assigned a weight based on our guess of the relative commonality of each user behavior
 * Initial run should be on an unoptimized version of our web app
 * After analyzing results, rerun on our web app with all optimizations active
 * Compare metrics from the two runs and record the improvement in terms of response times and number of maximum supported users
+
 
 ### Session Information
 #### Session 1
@@ -50,6 +52,7 @@ This session simulates a user browsing through the items on the home page.
 4. User waits between 5 - 10 seconds
 5. User logs out
 
+
 #### Session 2
 This session simulates an unauthenticated user browsing through the items on the home page.
 1. User visits home page
@@ -57,21 +60,19 @@ This session simulates an unauthenticated user browsing through the items on the
 3. User logs out
 
 #### Session 3
-This session simulates an authenticated user viewing and purchasing two items, then looking at their purchase history.
+This session simulates an authenticated user viewing and purchasing one item, then looking at their purchase history.
 1. User visits home page
 2. User visits login page and logs in
 3. User waits between 5 - 10 seconds
 4. User accesses the page for the first item
 5. User adds 1 of the first item to the cart (redirected to cart page)
-6. User visits home page
-7. User accesses the page for the second item
-8. User adds 1 of the second item to the cart (redirected to cart page)
-9. User checks out
-10. User waits 5 seconds
-11. User logs out
+6. User checks out
+7. User waits 5 seconds
+8. User logs out
+
 
 #### Session 4
-This session simulates an authenticated user creating, updating, and deleting a new listing.
+This session simulates an authenticated user creating, updating, and deleting a new item listing.
 1. User visits home page
 2. User visits login page and logs in
 3. User uploads their item
@@ -80,6 +81,7 @@ This session simulates an authenticated user creating, updating, and deleting a 
 6. Wait 1 second
 7. User deletes their item
 8. User logs out
+
 
 #### Session 5
 This session simulates an authenticated user leaving a review, editing their review, then deleting it.
@@ -93,18 +95,13 @@ This session simulates an authenticated user leaving a review, editing their rev
 8. User deletes their review
 9. User logs out
 
-#### Session 6
-This session simulates an authenticated user viewing an item, adding to cart, and removing the item from the cart.
-1. User visits home page
-2. User visits login page and logs in
-3. User waits 5 - 10 seconds
-4. User access the page for the first item
-5. User adds 1 of the first item to the cart (redirected to cart page)
-6. Wait 5 seconds
-7. Remove item from the cart
-8. User logs out
 
 ### Questions
 1. How to get id of the recently added item in Tsung?
 2. How to make it so that GET requests actually renders the webpage html instead of just returning the JSON?
+
+### explaining tsplot output
+* statistics before and after
+* what the axes represent
+* discuss results from load testing
 
