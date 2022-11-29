@@ -20,9 +20,9 @@ const App = () => (
                 <Route path="/auth" exact element={<Auth />}/>
                 <Route path="/items/:id" exact element={<Item />}/>
                 <Route path="/users/:id" exact element={<User />}/>
-                <Route path="/orders" exact element={<Orders />}/>
+                <Route path="/order_history" exact element={<Orders />}/>
                 <Route path="/cart" exact element={<Cart />}/>
-                <Route path="/orders/:id" exact element={<Order />}/>
+                <Route path="/order_history/:id" exact element={<Order />}/>
             </Routes>
         </Container>
     </BrowserRouter>
