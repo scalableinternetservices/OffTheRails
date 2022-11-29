@@ -12,7 +12,6 @@ import { useLocation } from 'react-router-dom';
 import Pagination from '../Pagination/Pagination'
 import { getItemPage } from '../../actions/items';
 import { useDispatch } from 'react-redux';
-
 import useStyles from './styles';
 
 const Items = ({ setCurrentId }) => {
