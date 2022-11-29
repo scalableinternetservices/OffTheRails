@@ -14,6 +14,7 @@ import { getItemPage } from '../../actions/items';
 import { useDispatch } from 'react-redux';
 import useStyles from './styles';
 
+
 const Items = ({ setCurrentId }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
