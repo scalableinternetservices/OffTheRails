@@ -116,12 +116,19 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n2" />
       </setdynvars>
+      <setdynvars sourcetype="random_number" start="1" end="100">
+        <var name="rand_n3" />
+      </setdynvars>
       <request><http method="GET" url="/"></http></request>
       <request subst="true"><http method="POST" url="/login/" contents='{"first_name":"","last_name":"","email":"e%%_rand_n1%%@mail.com","password":"pw","password_confirmation":""}'></http></request>
       <request><http method="GET" url="/"></http></request>
       <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
       <request><http method="POST" url="/ratings/" contents='{"comment":"", "score":"5", "item_id":"%%_rand_n2%%", "user_id":"%%_rand_n1%%"}'</http></request>
       <thinktime value="3" random="true"></thinktime>
+      <request subst="true"><http method="PATCH" url="/ratings/%%_rand_n3%%/" contents='{"comment":"", "score":"3", "item_id":"%%_rand_n2%%", "user_id":"%%_rand_n1%%"}'></http></request>
+      <thinktime value="3" random="true"></thinktime>
+      <request subst="true"><http method="DELETE" url="/ratings/%%_rand_n3%%/"></http></request>
+      <request><http method="POST" url="/logout/"></http></request>
     </session>
   </sessions>
 </tsung>
