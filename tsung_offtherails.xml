@@ -109,6 +109,20 @@
 
     <!-- This session simulates an authenticated user creating, updating, and deleting a new item listing.-->
     <session name="scenario_4" type="ts_http" weight="1">
+      <setdynvars sourcetype="random_number" start="1" end="100">
+        <var name="rand_n1" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="1" end="100">
+        <var name="rand_n2" />
+      </setdynvars>
+      <request><http method="GET" url="/"></http></request>
+      <request subst="true"><http method="POST" url="/login/" contents='{"first_name":"","last_name":"","email":"e%%_rand_n1%%@mail.com","password":"pw","password_confirmation":""}'></http></request>
+      <request><http method="POST" url="/items/" contents='{"name":"a","price":"1","quantity":"1","show":"","image_link":"bleh"}'></http></request>
+      <thinktime value="3" random="true"></thinktime>
+      <request subst="true"><http method="PATCH" url="/items/%%_rand_n1%%/" contents='{"name":"b","price":"1","quantity":"1","show":"","image_link":"bleh"}'></http></request>
+      <thinktime value="3" random="true"></thinktime>
+      <request subst="true"><http method="DELETE" url="/items/%%_rand_n1%%/"></http></request>
+      <request><http method="POST" url="/logout/"></http></request>
     </session>
 
     <!--This session simulates an authenticated user leaving a review, editing their review, then deleting it.-->
