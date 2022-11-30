@@ -65,7 +65,7 @@
     </session>
 
     <!--This session simulates a non-logged in user browsing through items on the homepage.-->
-    <session name="scenario_2" type="ts_http" weight="1">
+    <!-- <session name="scenario_2" type="ts_http" weight="1">
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n1" />
       </setdynvars>
@@ -88,6 +88,7 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n2" />
       </setdynvars>
+
       <request><http method="GET" url="/"></http></request>
       <request subst="true"><http method="POST" url="/login/" contents='{"first_name":"","last_name":"","email":"e%%_rand_n1%%@mail.com","password":"pw","password_confirmation":""}'></http></request>
       <request><http method="GET" url="/"></http></request>
@@ -95,10 +96,12 @@
       <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
       <!-- purchase the item -->
       <request subst="true"><http method="GET" url="/current_order?user_id=%%_rand_n1%%"></http></request>
+      <!-- TODO: Creates new order with order id of current order-->
       <request subst="true"><http method="POST" url="/order_items/" contents='{"order_item":{"quantity":1,"order_id":%%sub for whatever returned by previous get call%%,"item_id":"%%_rand_n2%%"}}'></http></request>
       <request subst="true"><http method="PATCH" url="/orders/%%extract%%/" contents='{"user_id":%%_rand_n1%%,"purchased":true}'></http></request>
-      <!-- view purchase history -->
-      <request subst="true"><http method="GET" url="/orders?user_id=%%_rand_n1%%"></http></request>
+      <thinktime value="3" random="true"></thinktime>
+      <!-- TODO: view purchase history -->
+      <request subst="true"><http method="GET" url="/order_items?order_id=%%_rand_n1%%"></http></request>
       <!-- logout -->
       <thinktime value="3" random="true"></thinktime>
       <request><http method="POST" url="/logout/"></http></request>
@@ -129,6 +132,6 @@
       <thinktime value="3" random="true"></thinktime>
       <request subst="true"><http method="DELETE" url="/ratings/%%_rand_n3%%/"></http></request>
       <request><http method="POST" url="/logout/"></http></request>
-    </session>
+    </session> -->
   </sessions>
 </tsung>
