@@ -6,7 +6,7 @@
 ### After SSH
 * tsung_example.xml is a sample configuration file that establishes various connections to https://cs291.com
 * tsung_offtherails.xml contains the actual load tests, described below
-* run load test: `tsung -f <<path to configuration file>> -k start
+* run load test: `tsung -f <<path to configuration file>> -k start`
  * -k start opens a web interface to view statistics during and after the load test
  * to access web interface: http://<<ip of ssh>>:8091
 * after testing, copy logs to local if necessary: `rsync -auvL <<ip of ssh>>:tsung_logs .`
@@ -16,7 +16,7 @@
 * run the load test and wait for it to complete
 * plotting one configuration: `tsplot -d graphs <<name (ex: with optimization)>> tsung_logs/<<timestamp>>/tsung.log && cd graphs`
 * comparing 2 (or more) configurations: `tsplot -d graphs <<name>> tsung_logs/<<timestamp1>>/tsung.log <<name2>> tsung_logs/<<timestamp2>>/tsung.log`
-* on your local machine, run: `rsync -auvL ec2-user@44.242.165.192:tsung_logs/<<timestamp>>/graphs .
+* on your local machine, run: `rsync -auvL ec2-user@44.242.165.192:tsung_logs/<<timestamp>>/graphs .`
 * files we should put in the report:
   * `http.png`: plots http requests per second based on status codes
   * `connected.png`: simultaneous connected users
