@@ -16,7 +16,7 @@
 * run the load test and wait for it to complete
 * plotting one configuration: `tsplot -d graphs <<name (ex: with optimization)>> tsung_logs/<<timestamp>>/tsung.log && cd graphs`
 * comparing 2 (or more) configurations: `tsplot -d graphs <<name>> tsung_logs/<<timestamp1>>/tsung.log <<name2>> tsung_logs/<<timestamp2>>/tsung.log`
-* on your local machine, run: `rsync -auvL ec2-user@44.242.165.192:tsung_logs/<<timestamp>>/graphs .`
+* on your local machine, run: `rsync -auvL ec2-user@44.242.165.192:/home/ec2-user/.tsung/log/<<timestamp>>/graphs .`
 * files we should put in the report:
   * `http.png`: plots http requests per second based on status codes
   * `connected.png`: simultaneous connected users
