@@ -25,7 +25,7 @@ const Orders = () => {
     }, []);
 
     const openOrder = (order) => {
-        navigate(`/orders/${order.id}`);
+        navigate(`/order_history/${order.id}`);
     }
 
     const formatDate = (date) => {
