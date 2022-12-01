@@ -1,19 +1,20 @@
-### Create an instance
+### Create an Tsung instance
 * `/bin/launch_tsung.sh` :use this command on jumbox to generate the ssh instance on which you will use to run tsung
 * ssh into the IP in the script's output, either on jumpbox or locally
-* an instance is already created, just run `ssh ec2-user@44.242.165.192` from your local machine - if this doesn't work (ssh times out), then go to EC2 console to find the new IP address of our team's tsung instance
 
-### After SSH
+### After SSH into Tsung instance
 * tsung_example.xml is a sample configuration file that establishes various connections to https://cs291.com
 * the file `tsung_offtherails.xml` in this repo contains the actual load tests, described below
 * copy the contents of `tsung_offtherails.xml` to the tsung instance via `rsync`
+* replace contents of `/usr/share/tsung/tsung_plotter/http.plots.en.conf` on the instance with the contents of `tsung_output/http.plots.en.conf` - this is for tsplot to track 500 and 502 errors
 * run load test: `tsung -f <<path to configuration file>> -k start
  * -k start opens a web interface to view statistics during and after the load test
  * to access web interface: http://<<ip of ssh>>:8091
 * after testing, copy logs and graphs to local if necessary: `rsync -auvL <<ip of ssh>>:tsung_logs .`
+* make sure to stop your instance after testing via EC2 console!
 
 ### Generating Graphics
-* `ssh ec2-user@44.242.165.192` - if this doesn't work (ssh times out), then go to EC2 console to find the new IP address of our team's tsung instance
+* ssh into your Tsung instance
 * run the load test and wait for it to complete
 * plotting one configuration: `tsplot -d graphs <<name (ex: with optimization)>> tsung_logs/<<timestamp>>/tsung.log && cd graphs`
 * comparing 2 (or more) configurations: `tsplot -d graphs <<name>> tsung_logs/<<timestamp1>>/tsung.log <<name2>> tsung_logs/<<timestamp2>>/tsung.log`
