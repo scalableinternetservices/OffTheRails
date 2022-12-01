@@ -23,6 +23,7 @@
   * `connected.png`: simultaneous connected users
   * `request_count.png`: similar to `http.png` but only plots cumulative number of requests per second
   * `request_mean.png`: mean duration of requests
+* after copying the graphs to local machine, make sure to put them in our directory under the tsung_output/ folder!
 
 ### Seeding the database
 * Seeding the database after we `eb deploy`:
@@ -30,7 +31,7 @@
 2. `sudo chmod ugo+rwx /etc/profile.d/sh.local`
 3. `sudo /opt/elasticbeanstalk/bin/get-config environment | jq -r 'to_entries | .[] | "export \(.key)=\"\(.value)\""' > /etc/profile.d/sh.local`
 4. `cat /etc/profile.d/sh.local > script`
-5. add #!/usr/bin/sh to top of `script`
+5. add `#!/usr/bin/sh` to top of `script`
 6. `source ./script`
 7. `cd /var/app/current`
 8. `bin/rails db:seed`

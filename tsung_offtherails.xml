@@ -11,14 +11,6 @@
     <server host="henry3.eba-pqkhfm2c.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
   </servers>
   
-  <!-- <load>
-    <arrivalphase phase="1" duration="5" unit="second">
-      <users arrivalrate="1" unit="second"></users>
-    </arrivalphase>
-    <arrivalphase phase="2" duration="10" unit="second">
-      <users arrivalrate="2" unit="second"></users>
-    </arrivalphase>
-  </load> -->
   <load>
     <arrivalphase phase="1" duration="1" unit="minute">
       <users arrivalrate="1" unit="second"></users>
@@ -59,24 +51,25 @@
       </setdynvars>
       <request><http method="GET" url="/"></http></request>
       <request subst="true"><http method="POST" url="/login/" contents='{"first_name":"","last_name":"","email":"e%%_rand_n%%@mail.com","password":"pw","password_confirmation":""}'></http></request>
-      <request><http method="GET" url="/"></http></request>
+      <request><http method="GET" url="/items/"></http></request>
       <thinktime value="3" random="true"></thinktime>
       <request><http method="POST" url="/logout/"></http></request>
 
     <!--This session simulates a non-logged in user browsing through items on the homepage.-->
-    <!-- <session name="scenario_2" type="ts_http" weight="1">
+    <session name="scenario_2" type="ts_http" weight="1">
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n1" />
       </setdynvars>
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n2" />
       </setdynvars>
-      <request><http method="GET" url="/"></http></request>
+      <request><http method="GET" url="/items/"></http></request>
+      <thinktime value="3" random="true"></thinktime>
       <request subst="true"><http method="GET" url="/items/%%_rand_n1%%/"></http></request>
       <thinktime value="3" random="true"></thinktime>
-      <request><http method="GET" url="/"></http></request>
-      <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
+      <request><http method="GET" url="/items/"></http></request>
       <thinktime value="3" random="true"></thinktime>
+      <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
     </session>
 
     <!--This session simulates an authenticated user viewing and purchasing one item, then looking at their purchase history.-->
@@ -92,15 +85,20 @@
       <request subst="true"><http method="POST" url="/login/" contents='{"first_name":"","last_name":"","email":"e%%_rand_n1%%@mail.com","password":"pw","password_confirmation":""}'></http></request>
       <request><http method="GET" url="/"></http></request>
       <thinktime value="3" random="true"></thinktime>
-      <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
+      <request subst="true">
+        <dyn_variable name="my_order_id"
+                re='"id": (.*),'/>
+        <http method="GET" url="/items/%%_rand_n2%%/"></http>
+      </request>
       <!-- TODO: purchase the item -->
       <request subst="true"><http method="GET" url="/current_order?user_id=%%_rand_n1%%"></http></request>
+      <!--fetch the item!-->
       <!-- TODO: Creates new order with order id of current order-->
-      <request subst="true"><http method="POST" url="/order_items/" contents='{"order_item":{"quantity":1,"order_id":%%sub for whatever returned by previous get call%%,"item_id":"%%_rand_n2%%"}}'></http></request>
-      <request subst="true"><http method="PATCH" url="/orders/%%extract%%/" contents='{"user_id":%%_rand_n1%%,"purchased":true}'></http></request>
+      <request subst="true"><http method="POST" url="/order_items/" contents='{"order_item":{"quantity":1,"order_id":%%_my_order_id%%,"item_id":"%%_rand_n2%%"}}'></http></request>
+      <request subst="true"><http method="PATCH" url="/orders/%%_my_order_id%%/" contents='{"user_id":%%_rand_n1%%,"purchased":true}'></http></request>
       <thinktime value="3" random="true"></thinktime>
       <!-- TODO: view purchase history -->
-      <request subst="true"><http method="GET" url="/order_items?order_id=%%_rand_n1%%"></http></request>
+      <request subst="true"><http method="GET" url="/order_history/%%_my_order_id%%/"></http></request>
       <!-- logout -->
       <thinktime value="3" random="true"></thinktime>
       <request><http method="POST" url="/logout/"></http></request>
@@ -111,16 +109,18 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n1" />
       </setdynvars>
-      <setdynvars sourcetype="random_number" start="1" end="100">
-        <var name="rand_n2" />
-      </setdynvars>
       <request><http method="GET" url="/"></http></request>
+      <!--TODO: save new item id-->
       <request subst="true"><http method="POST" url="/login/" contents='{"first_name":"","last_name":"","email":"e%%_rand_n1%%@mail.com","password":"pw","password_confirmation":""}'></http></request>
-      <request><http method="POST" url="/items/" contents='{"name":"a","price":"1","quantity":"1","show":"","image_link":"bleh"}'></http></request>
+      <request>
+        <<dyn_variable name="my_item_id"
+                re='"id": (.*),'/>
+        <http method="POST" url="/items/" contents='{"name":"a","price":"1","quantity":"1","show":"","image_link":"https://cdn.discordapp.com/attachments/491865379748970506/556673542431834114/jacket_full.png"}'></http>
+      </request>
       <thinktime value="3" random="true"></thinktime>
-      <request subst="true"><http method="PATCH" url="/items/%%_rand_n1%%/" contents='{"name":"b","price":"1","quantity":"1","show":"","image_link":"bleh"}'></http></request>
+      <request subst="true"><http method="PATCH" url="/items/%%_my_item_id%%/" contents='{"name":"b","price":"1","quantity":"1","show":"","image_link":"https://cdn.discordapp.com/attachments/491865379748970506/556673542431834114/jacket_full.png"}'></http></request>
       <thinktime value="3" random="true"></thinktime>
-      <request subst="true"><http method="DELETE" url="/items/%%_rand_n1%%/"></http></request>
+      <request subst="true"><http method="DELETE" url="/items/%%_my_item_id%%/"></http></request>
       <request><http method="POST" url="/logout/"></http></request>
     </session>
 
@@ -139,12 +139,17 @@
       <request subst="true"><http method="POST" url="/login/" contents='{"first_name":"","last_name":"","email":"e%%_rand_n1%%@mail.com","password":"pw","password_confirmation":""}'></http></request>
       <request><http method="GET" url="/"></http></request>
       <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
-      <request><http method="POST" url="/ratings/" contents='{"comment":"", "score":"5", "item_id":"%%_rand_n2%%", "user_id":"%%_rand_n1%%"}'</http></request>
+      <request>
+        <dyn_variable name="my_review_id"
+                re='"id": (.*),'/>
+        <http method="POST" url="/ratings/" contents='{"comment":"", "score":"5", "item_id":"%%_rand_n2%%", "user_id":"%%_rand_n1%%"}'></http>
+      </request>
       <thinktime value="3" random="true"></thinktime>
-      <request subst="true"><http method="PATCH" url="/ratings/%%_rand_n3%%/" contents='{"comment":"", "score":"3", "item_id":"%%_rand_n2%%", "user_id":"%%_rand_n1%%"}'></http></request>
+      <!--TODO: save new rating id and use it in the patch and update!-->
+      <request subst="true"><http method="PATCH" url="/ratings/%%_my_review_id%%/" contents='{"comment":"", "score":"3", "item_id":"%%_rand_n2%%", "user_id":"%%_rand_n1%%"}'></http></request>
       <thinktime value="3" random="true"></thinktime>
-      <request subst="true"><http method="DELETE" url="/ratings/%%_rand_n3%%/"></http></request>
+      <request subst="true"><http method="DELETE" url="/ratings/%%_my_review_id%%/"></http></request>
       <request><http method="POST" url="/logout/"></http></request>
-    </session> -->
+    </session>
   </sessions>
 </tsung>
