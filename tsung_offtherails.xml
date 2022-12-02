@@ -60,19 +60,22 @@
 
     <!--This session simulates a non-logged in user browsing through items on the homepage.-->
     <session name="scenario_2" type="ts_http" weight="1">
-      <setdynvars sourcetype="random_number" start="1" end="250">
+      <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n1" />
       </setdynvars>
-      <setdynvars sourcetype="random_number" start="1" end="250">
+      <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n2" />
       </setdynvars>
+      <setdynvars sourcetype="page_number" start="1" end="250">
+        <var name="rand_page" />
+      </setdynvars>
+      <request><http method="GET" url="/items/page/%%_rand_page%%"></http></request>
+      <thinktime value="3" random="true"></thinktime>
+      <request subst="true"><http method="GET" url="/items/%%_rand_n1%%/"></http></request>
+      <thinktime value="3" random="true"></thinktime>
       <request><http method="GET" url="/items/"></http></request>
       <thinktime value="3" random="true"></thinktime>
-      <request subst="true"><http method="GET" url="/items/page/%%_rand_n1%%/"></http></request>
-      <thinktime value="3" random="true"></thinktime>
-      <request><http method="GET" url="/items/"></http></request>
-      <thinktime value="3" random="true"></thinktime>
-      <request subst="true"><http method="GET" url="/items/page/%%_rand_n2%%/"></http></request>
+      <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
     </session>
 
     <!--This session simulates an authenticated user viewing and purchasing one item, then looking at their purchase history.-->
@@ -80,7 +83,7 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n1" />
       </setdynvars>
-      <setdynvars sourcetype="random_number" start="1" end="250">
+      <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n2" />
       </setdynvars>
       <setdynvars sourcetype="random_number" start="1" end="10">
