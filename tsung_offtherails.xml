@@ -140,7 +140,7 @@
       </setdynvars>
 
       <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n1%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
-      <!-- <request><http method="GET" url="/items/"></http></request> -->
+      <request><http method="GET" url="/items/"></http></request>
       <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
       
       <request subst="true">
