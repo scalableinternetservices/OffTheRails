@@ -49,7 +49,7 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n" />
       </setdynvars>
-      <setdynvars sourcetype="page_number" start="1" end="250">
+      <setdynvars sourcetype="random_number" start="1" end="250">
         <var name="rand_page" />
       </setdynvars>
       <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
@@ -66,14 +66,14 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n2" />
       </setdynvars>
-      <setdynvars sourcetype="page_number" start="1" end="250">
+      <setdynvars sourcetype="random_number" start="1" end="250">
         <var name="rand_page" />
       </setdynvars>
       <request><http method="GET" url="/items/page/%%_rand_page%%"></http></request>
       <thinktime value="3" random="true"></thinktime>
       <request subst="true"><http method="GET" url="/items/%%_rand_n1%%/"></http></request>
       <thinktime value="3" random="true"></thinktime>
-      <request><http method="GET" url="/items/"></http></request>
+      <request><http method="GET" url="/items/page/%%_rand_page%%"></http></request>
       <thinktime value="3" random="true"></thinktime>
       <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
     </session>
@@ -89,7 +89,7 @@
       <setdynvars sourcetype="random_number" start="1" end="10">
         <var name="rand_order_id" />
       </setdynvars>
-      <setdynvars sourcetype="page_number" start="1" end="250">
+      <setdynvars sourcetype="random_number" start="1" end="250">
         <var name="rand_page" />
       </setdynvars>
 
@@ -125,7 +125,7 @@
       <setdynvars sourcetype="random_number" start="1" end="1010">
         <var name="rand_item_id" />
       </setdynvars>
-      <setdynvars sourcetype="page_number" start="1" end="250">
+      <setdynvars sourcetype="random_number" start="1" end="250">
         <var name="rand_page" />
       </setdynvars>
 
@@ -150,7 +150,7 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="my_review_id" />
       </setdynvars>
-      <setdynvars sourcetype="page_number" start="1" end="250">
+      <setdynvars sourcetype="random_number" start="1" end="250">
         <var name="rand_page" />
       </setdynvars>
 
