@@ -49,7 +49,6 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n" />
       </setdynvars>
-      <request><http method="GET" url="/"></http></request>
       <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
       <request><http method="GET" url="/items/"></http></request>
       <thinktime value="3" random="true"></thinktime>
@@ -81,6 +80,9 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n2" />
       </setdynvars>
+      <setdynvars sourcetype="random_number" start="1" end="10">
+        <var name="rand_order_id" />
+      </setdynvars>
 
       <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n1%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
       <request><http method="GET" url="/items/"></http></request>
@@ -91,17 +93,17 @@
       </request>
 
       <request subst="true">
-        <dyn_variable name="my_order_id" jsonpath="$.id"/>
         <http method="GET" content_type="application/json" url="/current_order?user_id=%%_rand_n1%%"></http>
       </request>
 
-      <!-- Fetch the item!-->
-      <request subst="true"><http method="POST" content_type="application/json" url="/order_items/" contents="{&quot;order_item&quot;:{&quot;quantity&quot;:1,&quot;order_id&quot;:%%_my_order_id%%,&quot;item_id&quot;:&quot;%%_rand_n2%%&quot;}}"></http></request>
-      <request subst="true"><http method="PATCH" content_type="application/json" url="/orders/%%_my_order_id%%/" contents="{&quot;user_id&quot;:%%_rand_n1%%,&quot;purchased&quot;:true}"></http></request>
+      <!--Fetch the item!-->
+      <request subst="true"><http method="POST" content_type="application/json" url="/order_items/" contents="{&quot;order_item&quot;:{&quot;quantity&quot;:1,&quot;order_id&quot;:%%_rand_order_id%%,&quot;item_id&quot;:&quot;%%_rand_n2%%&quot;}}"></http></request>
+      <request subst="true"><http method="PATCH" content_type="application/json" url="/orders/%%_rand_order_id%%/" contents="{&quot;user_id&quot;:%%_rand_n1%%,&quot;purchased&quot;:true}"></http></request>
       <thinktime value="3" random="true"></thinktime>
-      <!-- View purchase history -->
-      <request subst="true"><http method="GET" url="/order_history/%%_my_order_id%%/"></http></request>
-      <!-- logout -->
+
+      <!--View purchase history-->
+      <request subst="true"><http method="GET" url="/order_history/%%_rand_order_id%%/"></http></request>
+      <!--Logout-->
       <thinktime value="3" random="true"></thinktime>
       <request><http method="POST" url="/logout/"></http></request>
     </session>
@@ -111,24 +113,22 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n1" />
       </setdynvars>
-      <request><http method="GET" url="/"></http></request>
-      <!--TODO: save new item id-->
-      <request subst="true"><http method="POST" content_type="application/json" url="/login/" contents='{"first_name":"","last_name":"","email":"e%%_rand_n1%%@mail.com","password":"pw","password_confirmation":""}'></http></request>
-      <request>
-        <dyn_variable name="my_item_id"
-                re='"id": (.*),'/>
-        <http method="POST" url="/items/" content_type="application/json" contents='{"name":"a","price":"1","quantity":"1","show":true,"image_link":"https://cdn.discordapp.com/attachments/491865379748970506/556673542431834114/jacket_full.png","seller_id":%%_rand_n1%%}'></http>
+      <setdynvars sourcetype="random_number" start="1" end="1010">
+        <var name="rand_item_id" />
+      </setdynvars>
+
+      <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n1%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
+      <request><http method="GET" url="/items/"></http></request>
+      <request subst="true">
+        <http method="POST" url="/items/" content_type="application/json" contents="{&quot;name&quot;:&quot;a&quot;,&quot;price&quot;:&quot;1&quot;,&quot;quantity&quot;:&quot;1&quot;,&quot;show&quot;:true,&quot;image_link&quot;:&quot;hello&quot;,&quot;seller_id&quot;:%%_rand_n1%%}"></http>
       </request>
       <thinktime value="3" random="true"></thinktime>
-      <request subst="true"><http method="PATCH" content_type="application/json" url="/items/%%_my_item_id%%/" contents='{"name":"b","price":"1","quantity":"1","show":true,"image_link":"https://cdn.discordapp.com/attachments/491865379748970506/556673542431834114/jacket_full.png","seller_id":%%_rand_n1%%}'></http></request>
-      <thinktime value="3" random="true"></thinktime>
-      <request subst="true"><http method="DELETE" url="/items/%%_my_item_id%%/"></http></request>
+      <request subst="true"><http method="PATCH" content_type="application/json" url="/items/%%_rand_item_id%%/" contents="{&quot;name&quot;:&quot;b&quot;,&quot;price&quot;:&quot;1&quot;,&quot;quantity&quot;:&quot;1&quot;,&quot;show&quot;:true,&quot;image_link&quot;:&quot;hello&quot;,&quot;seller_id&quot;:%%_rand_n1%%}"></http></request>
       <request><http method="POST" url="/logout/"></http></request>
     </session>
 
     <!--This session simulates an authenticated user leaving a review, editing their review, then deleting it.-->
-   <sessions>
-      <session name="scenario_5" type="ts_http" weight="1">
+    <session name="scenario_5" type="ts_http" weight="1">
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n1" />
       </setdynvars>
@@ -138,19 +138,17 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="my_review_id" />
       </setdynvars>
-      <request><http method="GET" url="/"></http></request>
-      <request subst="true"><http method="POST" content_type="application/json" url="/login/" contents='{"first_name":"","last_name":"","email":"e%%_rand_n1%%@mail.com","password":"pw","password_confirmation":""}'></http></request>
-      <request><http method="GET" url="/"></http></request>
+
+      <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n1%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
+      <!-- <request><http method="GET" url="/items/"></http></request> -->
       <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
-      <request>
-        <dyn_variable name="my_review_id" jsonpath="$.id"/>
-        <http method="POST" content_type="application/json" url="/ratings/" contents='{"comment":"", "score":"5", "item_id":"%%_rand_n2%%", "user_id":"%%_rand_n1%%"}'></http>
+      
+      <request subst="true">
+        <http method="POST" url="/ratings/" content_type="application/json" contents="{&quot;comment&quot;:&quot;&quot;, &quot;score&quot;:&quot;5&quot;, &quot;item_id&quot;:&quot;%%_rand_n2%%&quot;, &quot;user_id&quot;:&quot;%%_rand_n1%%&quot;}"></http>
       </request>
+
       <thinktime value="3" random="true"></thinktime>
-      <!--TODO: save new rating id and use it in the patch and update!-->
-      <request subst="true"><http method="PATCH" content_type="application/json" url="/ratings/%%_my_review_id%%/" contents='{"comment":"", "score":"3", "item_id":"%%_rand_n2%%", "user_id":"%%_rand_n1%%"}'></http></request>
-      <thinktime value="3" random="true"></thinktime>
-      <request subst="true"><http method="DELETE" url="/ratings/%%_my_review_id%%/"></http></request>
+      <request subst="true"><http method="PATCH" url="/ratings/%%_my_review_id%%/" contents="{&quot;comment&quot;:&quot;&quot;, &quot;score&quot;:&quot;3&quot;, &quot;item_id&quot;:&quot;%%_rand_n2%%&quot;, &quot;user_id&quot;:&quot;%%_rand_n1%%&quot;}"></http></request> -->
       <request><http method="POST" url="/logout/"></http></request>
     </session>
   </sessions>
