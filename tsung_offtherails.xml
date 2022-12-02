@@ -8,7 +8,7 @@
 
   <servers>
     <!--TODO: replace cs291.com with eb url-->
-    <server host="henry3.eba-pqkhfm2c.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
+    <server host="bryanxu.eba-pqkhfm2c.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
   </servers>
   
   <load>
