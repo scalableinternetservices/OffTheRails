@@ -49,27 +49,30 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n" />
       </setdynvars>
+      <setdynvars sourcetype="page_number" start="1" end="250">
+        <var name="rand_page" />
+      </setdynvars>
       <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
-      <request><http method="GET" url="/items/"></http></request>
+      <request><http method="GET" url="/items/page/%%_rand_page%%"></http></request>
       <thinktime value="3" random="true"></thinktime>
       <request><http method="POST" url="/logout/"></http></request>
     </session>
 
     <!--This session simulates a non-logged in user browsing through items on the homepage.-->
     <session name="scenario_2" type="ts_http" weight="1">
-      <setdynvars sourcetype="random_number" start="1" end="100">
+      <setdynvars sourcetype="random_number" start="1" end="250">
         <var name="rand_n1" />
       </setdynvars>
-      <setdynvars sourcetype="random_number" start="1" end="100">
+      <setdynvars sourcetype="random_number" start="1" end="250">
         <var name="rand_n2" />
       </setdynvars>
       <request><http method="GET" url="/items/"></http></request>
       <thinktime value="3" random="true"></thinktime>
-      <request subst="true"><http method="GET" url="/items/%%_rand_n1%%/"></http></request>
+      <request subst="true"><http method="GET" url="/items/page/%%_rand_n1%%/"></http></request>
       <thinktime value="3" random="true"></thinktime>
       <request><http method="GET" url="/items/"></http></request>
       <thinktime value="3" random="true"></thinktime>
-      <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
+      <request subst="true"><http method="GET" url="/items/page/%%_rand_n2%%/"></http></request>
     </session>
 
     <!--This session simulates an authenticated user viewing and purchasing one item, then looking at their purchase history.-->
@@ -77,15 +80,18 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="rand_n1" />
       </setdynvars>
-      <setdynvars sourcetype="random_number" start="1" end="100">
+      <setdynvars sourcetype="random_number" start="1" end="250">
         <var name="rand_n2" />
       </setdynvars>
       <setdynvars sourcetype="random_number" start="1" end="10">
         <var name="rand_order_id" />
       </setdynvars>
+      <setdynvars sourcetype="page_number" start="1" end="250">
+        <var name="rand_page" />
+      </setdynvars>
 
       <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n1%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
-      <request><http method="GET" url="/items/"></http></request>
+      <request><http method="GET" url="/items/page/%%_rand_page%%"></http></request>
 
       <thinktime value="3" random="true"></thinktime>
       <request subst="true">
@@ -116,9 +122,12 @@
       <setdynvars sourcetype="random_number" start="1" end="1010">
         <var name="rand_item_id" />
       </setdynvars>
+      <setdynvars sourcetype="page_number" start="1" end="250">
+        <var name="rand_page" />
+      </setdynvars>
 
       <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n1%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
-      <request><http method="GET" url="/items/"></http></request>
+      <request><http method="GET" url="/items/page/%%_rand_page%%"></http></request>
       <request subst="true">
         <http method="POST" url="/items/" content_type="application/json" contents="{&quot;name&quot;:&quot;a&quot;,&quot;price&quot;:&quot;1&quot;,&quot;quantity&quot;:&quot;1&quot;,&quot;show&quot;:true,&quot;image_link&quot;:&quot;hello&quot;,&quot;seller_id&quot;:%%_rand_n1%%}"></http>
       </request>
@@ -138,9 +147,12 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="my_review_id" />
       </setdynvars>
+      <setdynvars sourcetype="page_number" start="1" end="250">
+        <var name="rand_page" />
+      </setdynvars>
 
       <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n1%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
-      <request><http method="GET" url="/items/"></http></request>
+      <request><http method="GET" url="/items/page/%%_rand_page%%"></http></request>
       <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
       
       <request subst="true">
