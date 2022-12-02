@@ -148,7 +148,7 @@
       </request>
 
       <thinktime value="3" random="true"></thinktime>
-      <request subst="true"><http method="PATCH" url="/ratings/%%_my_review_id%%/" contents="{&quot;comment&quot;:&quot;&quot;, &quot;score&quot;:&quot;3&quot;, &quot;item_id&quot;:&quot;%%_rand_n2%%&quot;, &quot;user_id&quot;:&quot;%%_rand_n1%%&quot;}"></http></request> -->
+      <request subst="true"><http method="PATCH" url="/ratings/%%_my_review_id%%/" contents="{&quot;comment&quot;:&quot;&quot;, &quot;score&quot;:&quot;3&quot;, &quot;item_id&quot;:&quot;%%_rand_n2%%&quot;, &quot;user_id&quot;:&quot;%%_rand_n1%%&quot;}"></http></request>
       <request><http method="POST" url="/logout/"></http></request>
     </session>
   </sessions>
