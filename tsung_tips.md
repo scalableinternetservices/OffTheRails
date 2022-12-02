@@ -4,10 +4,10 @@
 
 ### After SSH into Tsung instance
 * tsung_example.xml is a sample configuration file that establishes various connections to https://cs291.com
-* the file `tsung_offtherails.xml` in this repo contains the actual load tests, described below
+* the file [`tsung_offtherails.xml`](https://github.com/scalableinternetservices/OffTheRails/blob/main/tsung_offtherails.xml) in this repo contains the actual load tests, described below
 * copy the contents of `tsung_offtherails.xml` to the tsung instance via `rsync`
-* replace contents of `/usr/share/tsung/tsung_plotter/http.plots.en.conf` on the instance with the contents of `tsung_output/http.plots.en.conf` - this is for tsplot to track 500 and 502 errors
-* run load test: `tsung -f <<path to configuration file>> -k start
+* replace contents of `/usr/share/tsung/tsung_plotter/http.plots.en.conf` on the instance with the contents of [`tsung_output/http.plots.en.conf`](https://github.com/scalableinternetservices/OffTheRails/blob/main/tsung_output/http.plots.en.conf) - this is for tsplot to track 500 and 502 errors
+* run load test: `tsung -f <<path to configuration file>> -k start`
  * -k start opens a web interface to view statistics during and after the load test
  * to access web interface: http://<<ip of ssh>>:8091
 * after testing, copy logs and graphs to local if necessary: `rsync -auvL <<ip of ssh>>:tsung_logs .`
