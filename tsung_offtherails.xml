@@ -53,7 +53,7 @@
         <var name="rand_page" />
       </setdynvars>
       <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
-      <request><http method="GET" url="/items/page/%%_rand_page%%"></http></request>
+      <request subst="true"><http method="GET" url="/items/page/%%_rand_page%%/"></http></request>
       <thinktime value="3" random="true"></thinktime>
       <request><http method="POST" url="/logout/"></http></request>
     </session>
@@ -69,11 +69,11 @@
       <setdynvars sourcetype="random_number" start="1" end="250">
         <var name="rand_page" />
       </setdynvars>
-      <request><http method="GET" url="/items/page/%%_rand_page%%"></http></request>
+      <request subst="true"><http method="GET" url="/items/page/%%_rand_page%%/"></http></request>
       <thinktime value="3" random="true"></thinktime>
       <request subst="true"><http method="GET" url="/items/%%_rand_n1%%/"></http></request>
       <thinktime value="3" random="true"></thinktime>
-      <request><http method="GET" url="/items/page/%%_rand_page%%"></http></request>
+      <request subst="true"><http method="GET" url="/items/page/%%_rand_page%%/"></http></request>
       <thinktime value="3" random="true"></thinktime>
       <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
     </session>
@@ -94,7 +94,7 @@
       </setdynvars>
 
       <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n1%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
-      <request><http method="GET" url="/items/page/%%_rand_page%%"></http></request>
+      <request subst="true"><http method="GET" url="/items/page/%%_rand_page%%/"></http></request>
 
       <thinktime value="3" random="true"></thinktime>
       <request subst="true">
@@ -130,7 +130,7 @@
       </setdynvars>
 
       <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n1%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
-      <request><http method="GET" url="/items/page/%%_rand_page%%"></http></request>
+      <request subst="true"><http method="GET" url="/items/page/%%_rand_page%%/"></http></request>
       <request subst="true">
         <http method="POST" url="/items/" content_type="application/json" contents="{&quot;name&quot;:&quot;a&quot;,&quot;price&quot;:&quot;1&quot;,&quot;quantity&quot;:&quot;1&quot;,&quot;show&quot;:true,&quot;image_link&quot;:&quot;hello&quot;,&quot;seller_id&quot;:%%_rand_n1%%}"></http>
       </request>
@@ -155,7 +155,7 @@
       </setdynvars>
 
       <request subst="true"><http method="POST" url="/login/" content_type="application/json" contents="{&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;email&quot;:&quot;e%%_rand_n1%%@mail.com&quot;,&quot;password&quot;:&quot;pw&quot;,&quot;password_confirmation&quot;:&quot;&quot;}"></http></request>
-      <request><http method="GET" url="/items/page/%%_rand_page%%"></http></request>
+      <request subst="true"><http method="GET" url="/items/page/%%_rand_page%%/"></http></request>
       <request subst="true"><http method="GET" url="/items/%%_rand_n2%%/"></http></request>
       
       <request subst="true">
